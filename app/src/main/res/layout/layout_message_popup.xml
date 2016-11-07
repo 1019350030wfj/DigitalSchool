@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_send_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_mess_send"
+        android:drawablePadding="@dimen/dimen9"
+        android:paddingLeft="@dimen/dimen9"
+        android:paddingRight="@dimen/dimen9"
+        android:paddingTop="@dimen/dimen5"
+        android:text="@string/send_message"
+        android:textColor="@color/color_666"
+        android:textSize="@dimen/size14"/>
+    <TextView
+        android:id="@+id/txt_del_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_mess_del"
+        android:drawablePadding="@dimen/dimen9"
+        android:paddingBottom="@dimen/dimen5"
+        android:paddingLeft="@dimen/dimen9"
+        android:paddingRight="@dimen/dimen9"
+        android:paddingTop="@dimen/dimen5"
+        android:text="@string/batch_delete"
+        android:textColor="@color/color_666"
+        android:textSize="@dimen/size14"/>
+
+</LinearLayout>

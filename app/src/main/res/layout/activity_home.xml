@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/white"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <View style="@style/DividerHorizontal"/>
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="@dimen/home_bottom_height">
+        <LinearLayout
+            android:id="@+id/ll_message_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_bottom_height"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_all"
+                style="@style/TabLinearWeight">
+
+                <ImageView
+                    android:id="@+id/iv_all"
+                    style="@style/TabIVWrap"
+                    android:src="@drawable/bg_btn_all"/>
+
+                <TextView
+                    android:id="@+id/tv_all"
+                    style="@style/TabTVWrap"
+                    android:text="@string/all_select"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_delete"
+                style="@style/TabLinearWeight">
+
+                <ImageView
+                    android:id="@+id/iv_delete"
+                    style="@style/TabIVWrap"
+                    android:src="@drawable/bg_btn_delete"/>
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    style="@style/TabTVWrap"
+                    android:text="@string/delete"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_all_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_bottom_height"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_index"
+                style="@style/TabLinearWeight">
+
+                <ImageView
+                    android:id="@+id/iv_index"
+                    style="@style/TabIVWrap"
+                    android:src="@drawable/ic_index_unsel"/>
+
+                <TextView
+                    android:id="@+id/tv_index"
+                    style="@style/TabTVWrap"
+                    android:text="@string/index"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_group"
+                style="@style/TabLinearWeight">
+
+                <ImageView
+                    android:id="@+id/iv_group"
+                    style="@style/TabIVWrap"
+                    android:src="@drawable/ic_group_unsel"/>
+
+                <TextView
+                    android:id="@+id/tv_group"
+                    style="@style/TabTVWrap"
+                    android:text="@string/message"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_shop"
+                style="@style/TabLinearWeight">
+
+                <ImageView
+                    android:id="@+id/iv_shop"
+                    style="@style/TabIVWrap"
+                    android:src="@drawable/ic_shop_unsel"/>
+
+                <TextView
+                    android:id="@+id/tv_shop"
+                    style="@style/TabTVWrap"
+                    android:text="@string/cloud"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_person"
+                style="@style/TabLinearWeight">
+
+                <ImageView
+                    android:id="@+id/iv_person"
+                    style="@style/TabIVWrap"
+                    android:src="@drawable/ic_person_unsel"/>
+
+                <TextView
+                    android:id="@+id/tv_person"
+                    style="@style/TabTVWrap"
+                    android:text="@string/person"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

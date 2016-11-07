@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <View
+        android:id="@+id/indicator"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+    />
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="19dp"
+        android:text="系统数据"
+        android:textSize="@dimen/size16"/>
+
+</LinearLayout>

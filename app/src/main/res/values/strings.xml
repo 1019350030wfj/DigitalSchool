@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">数字化校园系统</string>
+
+    <string name="index">首页</string>
+    <string name="message">消息</string>
+    <string name="cloud">云平台</string>
+    <string name="person">我的</string>
+    <string name="inbox">收件箱</string>
+    <string name="sendingbox">发件箱</string>
+    <string name="all_select">全选</string>
+    <string name="delete">删除</string>
+    <string name="already_select_delete">已选择%1$s封</string>
+    <string name="send_message">发送消息</string>
+    <string name="batch_delete">批量删除</string>
+</resources>

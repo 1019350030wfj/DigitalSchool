@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="BaseAppTheme" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/colorPrimary</item>    <!-- 状态栏 -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item> <!-- toolbar -->
+        <item name="colorAccent">@color/colorAccent</item>  <!-- 重点 -->
+    </style>
+
+    <style name="DividerHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">#e6e6e6</item>
+    </style>
+
+    <style name="TabLinearWeight">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TabTVWrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TabIVWrap">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="FineLineStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/fine_line_height</item>
+        <item name="android:background">@color/color_dividing_line</item>
+    </style>
+
+</resources>

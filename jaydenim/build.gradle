@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+    }
+
+    sourceSets {
+        main {
+            //jni库的调用会到资源文件夹下libs里面找so文件
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.android.support:support-v4:24.2.1'
+    compile files('libs/improtocol.jar')
+    compile project(':filepicker')
+}
