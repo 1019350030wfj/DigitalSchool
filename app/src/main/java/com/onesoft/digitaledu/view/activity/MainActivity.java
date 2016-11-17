@@ -39,6 +39,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
     // 首页
     private ImageView mIVIndex;
     private TextView mTVIndex;
+    private TextView mTvAll;
 
     private View mLLAllBottom;
     private View mLLMessageBottom;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         mTVPerson = findText(R.id.tv_person);
         setOnClickListenerEvent(R.id.ll_person);
 
+        mTvAll = (TextView) findViewById(R.id.tv_all);
         mLLAllBottom = findViewById(R.id.ll_all_bottom);
         mLLMessageBottom = findViewById(R.id.ll_message_bottom);
 
@@ -72,30 +74,39 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         findViewById(R.id.ll_all).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMessageFragment.setSelectAll();
+                if (!isSelectAll) {
+                    mTvAll.setText(getResources().getString(R.string.cancel_all_select));
+                } else {
+                    mTvAll.setText(getResources().getString(R.string.all_select));
+                }
+                isSelectAll = !isSelectAll;
+                mMessageFragment.setSelectAll(isSelectAll);
             }
         });
 
-       normalState();
+        normalState();
     }
 
-    public void deleteState(){
+    private boolean isSelectAll = false;
+
+    public void deleteState() {
         translateToShow(mLLMessageBottom);
         translateToHide(mLLAllBottom);
+        isSelectAll = false;
     }
 
-    public void normalState(){
+    public void normalState() {
         translateToShow(mLLAllBottom);
         translateToHide(mLLMessageBottom);
     }
 
-    private void translateToShow(View view){
+    private void translateToShow(View view) {
         AnimationSet animationSet = (AnimationSet) AnimationUtils.loadAnimation(this, R.anim.show_set);
         view.startAnimation(animationSet);
         view.setVisibility(View.VISIBLE);
     }
 
-    private void translateToHide(View view){
+    private void translateToHide(View view) {
         AnimationSet animationSet = (AnimationSet) AnimationUtils.loadAnimation(this, R.anim.hide_set);
         view.startAnimation(animationSet);
         view.setVisibility(View.GONE);

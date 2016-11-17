@@ -12,6 +12,9 @@ import com.onesoft.digitaledu.R;
 import com.onesoft.digitaledu.model.TopDirectory;
 import com.onesoft.digitaledu.model.TwoLevelTitle;
 import com.onesoft.digitaledu.presenter.twolevel.TwoLevelPresenter;
+import com.onesoft.digitaledu.utils.SPHelper;
+import com.onesoft.digitaledu.utils.Utils;
+import com.onesoft.digitaledu.utils.ViewUtil;
 import com.onesoft.digitaledu.view.activity.ToolBarActivity;
 import com.onesoft.digitaledu.view.fragment.home.TopDirectoryAdapter;
 import com.onesoft.digitaledu.view.iview.twolevel.ITwoLevelView;
@@ -38,6 +41,7 @@ public class TwoLevelActivity extends ToolBarActivity<TwoLevelPresenter> impleme
         mTopDirectory = (TopDirectory) getIntent().getExtras().getSerializable(PARAM);
     }
 
+    private View mLLView;
     private ListView mListView;
     private GridView mGridView;
     private TwoLevelTitleAdapter mTitleAdapter;
@@ -56,12 +60,15 @@ public class TwoLevelActivity extends ToolBarActivity<TwoLevelPresenter> impleme
 
     @Override
     public void initView() {
+        mLLView = findViewById(R.id.ll_two_level);
         mListView = (ListView) findViewById(R.id.listview);
         mGridView = (GridView) findViewById(R.id.gridView);
         mTitleAdapter = new TwoLevelTitleAdapter(this);
         mTopDirectoryAdapter = new TopDirectoryAdapter(this);
         mListView.setAdapter(mTitleAdapter);
         mGridView.setAdapter(mTopDirectoryAdapter);
+
+        mLLView.setMinimumHeight(Utils.getDisplayHeigth(this));
     }
 
     @Override
@@ -81,6 +88,8 @@ public class TwoLevelActivity extends ToolBarActivity<TwoLevelPresenter> impleme
         super.initData();
         mPresenter.getTwoLevelTitle(mTopDirectory.id);
         setTitle(mTopDirectory.name);
+        //设置壁纸
+        ViewUtil.setBackGround(mLLView, SPHelper.getWallPaperPosition(this));
     }
 
     @Override
@@ -93,6 +102,6 @@ public class TwoLevelActivity extends ToolBarActivity<TwoLevelPresenter> impleme
             public void run() {
                 mPageStateLayout.onSucceed();
             }
-        },4000);
+        },2000);
     }
 }

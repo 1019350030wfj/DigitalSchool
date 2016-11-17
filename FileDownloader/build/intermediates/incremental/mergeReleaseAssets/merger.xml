@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\workspace\android\DigitalSchool\DigitalEducation\FileDownloader\src\main\assets"/><source path="D:\workspace\android\DigitalSchool\DigitalEducation\FileDownloader\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\workspace\android\DigitalSchool\DigitalEducation\FileDownloader\src\release\assets"/></dataSet></merger>

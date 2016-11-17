@@ -55,5 +55,7 @@
         />
     </RelativeLayout>
 
-    <View style="@style/FineLineStyle"/>
+    <View
+        android:visibility="gone"
+        style="@style/FineLineStyle"/>
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import com.onesoft.digitaledu.R;
 import com.onesoft.digitaledu.model.BoxBean;
+import com.onesoft.digitaledu.view.activity.message.MessageDetailActivity;
 import com.onesoft.digitaledu.view.iview.message.IInBoxView;
 import com.onesoft.digitaledu.presenter.message.InBoxPresenter;
 import com.onesoft.digitaledu.view.fragment.BaseFragment;
@@ -33,7 +34,7 @@ public class BoxFragment extends BaseFragment<InBoxPresenter> implements IInBoxV
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_inbox;
+        return R.layout.fragment_listview;
     }
 
     @Override
@@ -59,19 +60,27 @@ public class BoxFragment extends BaseFragment<InBoxPresenter> implements IInBoxV
                 return true;
             }
         });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MessageDetailActivity.startMessageDetail(getActivity(), mBoxAdapter.getItem(position));
+            }
+        });
     }
 
 
     private boolean mIsDeleteMode;
+
     public void setBoxAdapterDeleteMode(boolean isDeleteMode) {
         mIsDeleteMode = isDeleteMode;
         mBoxAdapter.setISDeleteMode(isDeleteMode);
     }
 
-    public void setSelectAll() {//全选
-        if (mIsDeleteMode){
-            for (BoxBean boxBean :  mBoxAdapter.getDatas()){
-                boxBean.isDelete = true;
+    public void setSelectAll(boolean isSelectAll) {//全选
+        if (mIsDeleteMode) {
+            for (BoxBean boxBean : mBoxAdapter.getDatas()) {
+                boxBean.isDelete = isSelectAll;
                 mBoxAdapter.notifyDataSetChanged();
             }
         }

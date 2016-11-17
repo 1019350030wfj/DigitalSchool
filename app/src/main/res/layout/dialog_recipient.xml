@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/shape_r16_fff"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="15dp"
+        android:paddingTop="21dp"
+        android:text="@string/recipient"
+        android:textColor="@color/color_1A1A1A"
+        android:textSize="@dimen/size18"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen5"
+    >
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/dimen45"
+            android:layout_height="@dimen/dimen45"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen20"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_default_avatar"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_toRightOf="@id/avatar"
+            android:paddingTop="@dimen/dimen5"
+            android:text="凤凰城月"
+            android:textColor="@color/color_808080"
+            android:textSize="@dimen/size16"/>
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_toRightOf="@id/avatar"
+            android:text="教师工号：963258"
+            android:textColor="@color/color_999999"
+            android:textSize="12sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.onesoft.digitaledu.R;
 import com.onesoft.digitaledu.view.activity.MainActivity;
+import com.onesoft.digitaledu.view.activity.message.SendMessageActivity;
 import com.onesoft.digitaledu.view.fragment.BaseTitleFragment;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class MessageFragment extends BaseTitleFragment {
 
                 view.findViewById(R.id.txt_del_message).setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(View v) {//批量删除
                         if (popupWindow.isShowing()) {
                             popupWindow.dismiss();
                         }
@@ -81,6 +82,16 @@ public class MessageFragment extends BaseTitleFragment {
                         } else {
                             ((BoxFragment) mFragmentList.get(1)).setBoxAdapterDeleteMode(true);
                         }
+                    }
+                });
+
+                view.findViewById(R.id.txt_send_message).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//发送消息
+                        if (popupWindow.isShowing()) {
+                            popupWindow.dismiss();
+                        }
+                        SendMessageActivity.startSendMessageActivity(getActivity());
                     }
                 });
             }
@@ -185,11 +196,11 @@ public class MessageFragment extends BaseTitleFragment {
         mIndicatorView2.setSelected(false);
     }
 
-    public void setSelectAll() {//全选
+    public void setSelectAll(boolean isSelectAll) {//全选
         if (mCurSelectPage == 0) {
-            ((InBoxFragment) mFragmentList.get(0)).setSelectAll();
+            ((InBoxFragment) mFragmentList.get(0)).setSelectAll(isSelectAll);
         } else {
-            ((BoxFragment) mFragmentList.get(1)).setSelectAll();
+            ((BoxFragment) mFragmentList.get(1)).setSelectAll(isSelectAll);
         }
     }
 }

@@ -120,17 +120,17 @@ public class ImageHandler {
     /**
      * 从url加载普通图片
      */
-    public static void getImage(Context context, final ImageView imageView, String url, int width, int height) {
+    public static void getImage(Context context, final ImageView imageView, String url, int defaultID) {
         if (TextUtils.isEmpty(url)) {
-            imageView.setImageDrawable(context.getResources().getDrawable(R.drawable.digital_default));
+            imageView.setImageDrawable(context.getResources().getDrawable(defaultID));
             return;
         }
         if (checkActivityNull(context)) {
             return;
         }
-        Glide.with(context).load(url).error(R.drawable.digital_default).placeholder(R.drawable.digital_default)
+        Glide.with(context).load(url).error(defaultID).placeholder(defaultID)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .centerCrop().override(width, height).into(imageView);
+                .centerCrop().into(imageView);
     }
 
     /**

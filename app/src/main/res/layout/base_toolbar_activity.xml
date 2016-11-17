@@ -16,7 +16,8 @@
             android:visibility="invisible"/>
         <View
             android:id="@+id/v_line"
-            style="@style/FineLineStyle"/>
+            style="@style/FineLineStyle"
+        android:visibility="gone"/>
         <FrameLayout
             android:id="@+id/fl_container"
             android:layout_width="match_parent"

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f2f2f2"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:id="@+id/ll_currency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+        >
+            <TextView
+                android:id="@+id/txt_inbox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/download_now"
+                android:textColor="@color/message_title_text"
+                android:textSize="@dimen/size16"/>
+
+            <View
+                android:id="@+id/indicator1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/message_title_indicator"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_render"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+        >
+            <TextView
+                android:id="@+id/txt_sending_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/download_already"
+                android:textColor="@color/message_title_text"
+                android:textSize="@dimen/size16"/>
+
+            <View
+                android:id="@+id/indicator2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/message_title_indicator"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:id="@+id/ll_message_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_bottom_height"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_all"
+            style="@style/TabLinearWeight">
+
+            <ImageView
+                android:id="@+id/iv_all"
+                style="@style/TabIVWrap"
+                android:src="@drawable/bg_btn_all"/>
+
+            <TextView
+                android:id="@+id/tv_all"
+                style="@style/TabTVWrap"
+                android:text="@string/all_select"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_delete"
+            style="@style/TabLinearWeight">
+
+            <ImageView
+                android:id="@+id/iv_delete"
+                style="@style/TabIVWrap"
+                android:src="@drawable/bg_btn_delete"/>
+
+            <TextView
+                android:id="@+id/tv_delete"
+                style="@style/TabTVWrap"
+                android:text="@string/delete"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

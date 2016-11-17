@@ -11,25 +11,42 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.onesoft.digitaledu.presenter.BasePresenter;
+import com.onesoft.pagestate.PageStateLayout;
 
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
 
+    private LinearLayout rootView;
     protected View mContentView;//内容区域
     protected T mPresenter;
 
+    protected PageStateLayout mPageStateLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayoutResId(), container, false);
+        rootView = new LinearLayout(getActivity());
+        rootView.setOrientation(LinearLayout.VERTICAL);
+
+        mContentView = inflater.inflate(getLayoutResId(), null, false);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        mContentView.setLayoutParams(params);
+
+        mPageStateLayout = new PageStateLayout(getActivity());
+        initPageState();
+        mPageStateLayout.load(rootView, mContentView);
         initPresenter();
-        return view;
+        return rootView;
+    }
+
+    protected void initPageState() {//这边可以自定义空状态页面
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        this.mContentView = view;
-
         initView(view);
         initListener();
         initData(savedInstanceState);

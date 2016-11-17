@@ -13,7 +13,7 @@ import com.onesoft.digitaledu.R;
 
 public class FixWidthHeightRatioView extends ImageView {
 
-    private float wh_ratio=0.8125f;//默认宽高比
+    private float wh_ratio=1.0f;//默认宽高比
 
     public FixWidthHeightRatioView(Context context) {
         super(context);

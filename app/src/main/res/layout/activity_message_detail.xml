@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f2f2f2"
+    android:paddingTop="@dimen/dimen15">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/color_ebebeb"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen10">
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape_r6_fff"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen10"
+            android:text="@string/delete"
+            android:textColor="@color/color_666"
+            android:textSize="@dimen/size16"/>
+        <Button
+            android:id="@+id/btn_reply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_weight="1"
+            android:background="@drawable/shape_r6_23a0e"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen10"
+            android:text="@string/reply"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size16"/>
+    </LinearLayout>
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    style="@style/detail_message_title"
+                    android:drawablePadding="@dimen/dimen5"
+                    android:drawableRight="@drawable/icon_mess_infor"
+                    android:text="任职班主任通知"/>
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_ebebeb"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <TextView
+                    style="@style/send_message_title"
+                    android:text="@string/send_time"/>
+                <TextView
+                    android:id="@+id/txt_send_time"
+                    style="@style/send_message_title_right"
+                    android:text="2016-10-31 10:36"/>
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_ebebeb"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <TextView
+                    style="@style/send_message_title"
+                    android:text="@string/send_person"/>
+                <TextView
+                    android:id="@+id/txt_send_person"
+                    style="@style/send_message_title_right"
+                    android:text=""/>
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_ebebeb"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <TextView
+                    style="@style/send_message_title"
+                    android:text="@string/recipient"/>
+                <TextView
+                    android:id="@+id/txt_recipient"
+                    style="@style/send_message_title_right"
+                    android:text=""/>
+                <ImageView
+                    android:id="@+id/img_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="@dimen/dimen15"
+                    android:src="@drawable/icon_next_nor"/>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/color_ebebeb"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="223dp"
+                android:background="@android:color/white">
+                <EditText
+                    android:id="@+id/edit_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/hint_title"
+                    android:paddingTop="@dimen/dimen18"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15"
+                    android:textColor="@color/color_808080"
+                    android:textSize="@dimen/size16"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

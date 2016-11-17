@@ -53,6 +53,7 @@ public abstract class BaseTitleFragment extends Fragment {
             mContentView.setLayoutParams(params);
 //            attachToRoot(mContentView);
             mPageStateLayout = new PageStateLayout(getActivity());
+            initPageState();
             mPageStateLayout.setOnEmptyListener(mOnEmptyListener)
                     .setOnErrorListener(mOnErrorListener)
                     .load(rootView, mContentView);
@@ -63,6 +64,9 @@ public abstract class BaseTitleFragment extends Fragment {
         return rootView;
     }
 
+    protected void initPageState() {//这边可以自定义空状态页面
+
+    }
     private View.OnClickListener mOnEmptyListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

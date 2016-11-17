@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/personal_bg_default_00"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen10"
+                    android:layout_marginTop="60dp"
+                    android:gravity="center"
+                    android:text="@string/administrator"
+                    android:textColor="@color/color_1A1A1A"
+                    android:textSize="21sp"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="53dp"
+                android:layout_height="48dp"
+                android:scaleType="center"
+                android:src="@drawable/nav_btn_back_nor"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="53dp"
+                android:layout_height="48dp"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:text="@string/edit"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/size16"
+            />
+            <com.onesoft.digitaledu.widget.CircleImageView
+                android:id="@+id/iv_avater"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/icon_default_avatar"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="1dp"/>
+        </FrameLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/study_number"/>
+            <EditText
+                android:id="@+id/edit_number"
+                style="@style/person_info_title1"
+                android:text="administrator"/>
+
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/sex"/>
+            <TextView
+                android:id="@+id/edit_sex"
+                style="@style/person_info_title1"
+                android:text="男"/>
+            <ImageView
+                android:id="@+id/img_sex"
+                style="@style/next"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/position"/>
+            <EditText
+                android:id="@+id/edit_position"
+                style="@style/person_info_title1"
+                android:text="教务处主任"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/department"/>
+            <EditText
+                android:id="@+id/edit_departmentn"
+                style="@style/person_info_title1"
+                android:text="自动化机械学院"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/place_of_origin"/>
+            <EditText
+                android:id="@+id/edit_place_of_origin"
+                style="@style/person_info_title1"
+                android:text="福建省泉州市"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/nation"/>
+            <EditText
+                android:id="@+id/edit_nation"
+                style="@style/person_info_title1"
+                android:text="汉族"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/blood_type"/>
+            <EditText
+                android:id="@+id/edit_blood_type"
+                style="@style/person_info_title1"
+                android:text="AB型"/>
+            <ImageView
+                android:id="@+id/img_blood_type"
+                style="@style/next"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/birthday"/>
+            <EditText
+                android:id="@+id/edit_birthday"
+                style="@style/person_info_title1"
+                android:text="1992-01-01"/>
+            <ImageView
+                android:id="@+id/img_birthday"
+                style="@style/next"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/idcard"/>
+            <EditText
+                android:id="@+id/edit_idcard"
+                style="@style/person_info_title1"
+                android:text="350521199201011515"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/phone_number"/>
+            <EditText
+                android:id="@+id/edit_phone_number"
+                style="@style/person_info_title1"
+                android:text="18359100430"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/place"/>
+            <EditText
+                android:id="@+id/edit_place"
+                style="@style/person_info_title1"
+                android:text="福建省泉州市洛江区美仙山福建省泉州市洛江区美仙山"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/color_f2f2f2"
+           />
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/email"/>
+            <EditText
+                android:id="@+id/edit_email"
+                style="@style/person_info_title1"
+                android:text="1019350030@qq.com"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/motto"/>
+            <EditText
+                android:id="@+id/edit_motto"
+                style="@style/person_info_title1"
+                android:text="坚持 习惯 总结 反思 效率"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/hobby"/>
+            <EditText
+                android:id="@+id/edit_hobby"
+                style="@style/person_info_title1"
+                android:text="篮球 排球 乒乓球"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/specialty"/>
+            <EditText
+                android:id="@+id/edit_specialty"
+                style="@style/person_info_title1"
+                android:text="篮球"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/color_f2f2f2"
+        />
+    </LinearLayout>
+</ScrollView>

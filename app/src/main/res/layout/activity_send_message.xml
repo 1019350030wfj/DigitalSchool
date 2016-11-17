@@ -3,6 +3,124 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/color_f2f2f2"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dimen15"
+>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/send_message_title"
+            android:text="@string/type"/>
+        <TextView
+            android:id="@+id/txt_type"
+            style="@style/send_message_title_right"
+            android:text="@string/message"/>
+        <ImageView
+            android:id="@+id/img_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@drawable/icon_next_nor"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/send_message_title"
+            android:text="@string/recipient"/>
+        <TextView
+            android:id="@+id/txt_recipient"
+            style="@style/send_message_title_right"
+            android:text="@string/recipient"/>
+        <ImageView
+            android:id="@+id/img_recipient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@drawable/icon_add_nor"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/send_message_title"
+            android:text="@string/title"/>
+        <EditText
+            android:id="@+id/edit_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="@dimen/dimen15"
+            android:background="@null"
+            android:hint="@string/hint_title"
+            android:paddingTop="@dimen/dimen15"
+            android:textColor="@color/color_808080"
+            android:textSize="@dimen/size16"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minHeight="223dp">
+
+        <TextView
+            style="@style/send_message_title"
+            android:text="@string/content"/>
+        <EditText
+            android:id="@+id/edit_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="@dimen/dimen15"
+            android:background="@null"
+            android:hint="@string/hint_content"
+            android:paddingTop="@dimen/dimen15"
+            android:textColor="@color/color_808080"
+            android:textSize="@dimen/size16"/>
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_send_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_r16_23a0e5"
+        android:gravity="center"
+        android:paddingBottom="12dp"
+        android:paddingTop="12dp"
+        android:text="@string/send"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/size16"
+    />
+
 
 </LinearLayout>

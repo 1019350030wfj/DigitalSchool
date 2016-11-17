@@ -33,7 +33,7 @@ public class InBoxFragment extends BaseFragment<InBoxPresenter> implements IInBo
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_inbox;
+        return R.layout.fragment_listview;
     }
 
     @Override
@@ -67,10 +67,10 @@ public class InBoxFragment extends BaseFragment<InBoxPresenter> implements IInBo
         mBoxAdapter.setISDeleteMode(isDeleteMode);
     }
 
-    public void setSelectAll() {//全选
+    public void setSelectAll(boolean isSelectAll) {//全选
         if (mIsDeleteMode){
            for (BoxBean boxBean :  mBoxAdapter.getDatas()){
-               boxBean.isDelete = true;
+               boxBean.isDelete = isSelectAll;
                mBoxAdapter.notifyDataSetChanged();
            }
         }

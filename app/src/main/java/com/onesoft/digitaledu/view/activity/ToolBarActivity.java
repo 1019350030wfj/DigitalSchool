@@ -16,6 +16,8 @@ import com.onesoft.digitaledu.R;
 import com.onesoft.digitaledu.presenter.BasePresenter;
 import com.onesoft.pagestate.PageStateLayout;
 
+import static com.onesoft.digitaledu.R.id.toolbar;
+
 
 /**
  * 包含Toolbar的基类，可以配置是否需要滑动退出
@@ -26,11 +28,12 @@ import com.onesoft.pagestate.PageStateLayout;
 public abstract class ToolBarActivity<T extends BasePresenter> extends BaseActivity<T> implements IActivityView {
 
     private FrameLayout mContainer;
-    private Toolbar mToolbar;
+    protected Toolbar mToolbar;
     private View mTopMargin;
     private View mLine;
     private View mTitleRightImg;
     private View mTitleContainer;
+    private TextView tvTitle;
 
     protected PageStateLayout mPageStateLayout;
 
@@ -40,23 +43,31 @@ public abstract class ToolBarActivity<T extends BasePresenter> extends BaseActiv
 
         mContainer = (FrameLayout) findViewById(R.id.fl_container);
         mPageStateLayout = new PageStateLayout(this);
+        initPageState();
         mPageStateLayout.setOnEmptyListener(mOnEmptyListener)
                 .setOnErrorListener(mOnErrorListener)
                 .load(mContainer, initContentView(getLayoutInflater()));
 //        mContainer.addView(initContentView(getLayoutInflater()));
         mPageStateLayout.onLoading();
         mTopMargin = findViewById(R.id.v_top);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(toolbar);
         mLine = findViewById(R.id.v_line);
         mTitleRightImg = findViewById(R.id.head_title_img);
         mTitleContainer = findViewById(R.id.title_container);
+        tvTitle = (TextView) findViewById(R.id.tv_title);
 
-        setupToolbar(mToolbar);
-        initToolbar(mToolbar);
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+        }
+        initToolbar();
 
         initView();
         initListener();
         initData();
+    }
+
+    protected void initPageState() {//这边可以自定义空状态页面
+
     }
 
     private View.OnClickListener mOnEmptyListener = new View.OnClickListener() {
@@ -79,15 +90,9 @@ public abstract class ToolBarActivity<T extends BasePresenter> extends BaseActiv
     }
 
     /* ============================ Toolbar Setting =============================== */
-    protected void setupToolbar(Toolbar toolbar) {
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }
-    }
-
-    public void initToolbar(Toolbar toolbar) {
-        toolbar.setNavigationIcon(R.drawable.nav_btn_back_nor);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+    public void initToolbar() {
+        mToolbar.setNavigationIcon(R.drawable.nav_btn_back_nor);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -193,7 +198,6 @@ public abstract class ToolBarActivity<T extends BasePresenter> extends BaseActiv
      * @param title
      */
     public void setTitle(String title) {
-        TextView tvTitle = (TextView) findViewById(R.id.tv_title);
         tvTitle.setText(title);
         findViewById(R.id.iv_logo).setVisibility(View.GONE);
     }

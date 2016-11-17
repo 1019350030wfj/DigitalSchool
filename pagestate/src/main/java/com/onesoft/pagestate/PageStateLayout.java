@@ -36,6 +36,11 @@ public class PageStateLayout extends FrameLayout implements PageStateListener {
     private View mSucceedView;
     private MaterialProgress mLoading;
 
+    public void setEmptyView(View emptyView) {
+        mEmptyView = emptyView;
+        addView(mEmptyView);
+    }
+
     public PageStateLayout(Context context) {
         super(context);
         init();

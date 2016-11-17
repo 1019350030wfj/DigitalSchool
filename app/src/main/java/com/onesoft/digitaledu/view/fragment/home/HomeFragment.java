@@ -7,10 +7,17 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.onesoft.digitaledu.R;
+import com.onesoft.digitaledu.model.BaseEvent;
 import com.onesoft.digitaledu.model.TopDirectory;
+import com.onesoft.digitaledu.utils.SPHelper;
+import com.onesoft.digitaledu.utils.ViewUtil;
 import com.onesoft.digitaledu.view.activity.twolevel.TwoLevelActivity;
 import com.onesoft.digitaledu.view.fragment.BaseTitleFragment;
 import com.onesoft.digitaledu.widget.CircleIndicator;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +31,7 @@ public class HomeFragment extends BaseTitleFragment {
     private ViewPager mViewPager;
     private CircleIndicator mIndicator;
     private HomePageAdapter mHomePageAdapter;
+    private List<View> mViews;
 
     @Override
     protected int getContentLayoutId() {
@@ -52,7 +60,7 @@ public class HomeFragment extends BaseTitleFragment {
             mDatas.add(topDirectory);
         }
 
-        List<View> mViews = new ArrayList<>();
+        mViews = new ArrayList<>();
         int count = mDatas.size() % 16 == 0 ? mDatas.size() / 16 : mDatas.size() / 16 + 1;
         for (int i = 0; i < count; i++) {
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.layout_gridview, null);
@@ -74,7 +82,7 @@ public class HomeFragment extends BaseTitleFragment {
             mViews.add(view);
         }
         mHomePageAdapter.setData(mViews);
-
+        updateBG();
         mIndicator.setViewPager(mViewPager);
         mIndicator.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -96,6 +104,40 @@ public class HomeFragment extends BaseTitleFragment {
             public void run() {
                 mPageStateLayout.onSucceed();
             }
-        },4000);
+        }, 1000);
+
+        EventBus.getDefault().register(this);
+    }
+
+    private void updateBG() {
+        if (mViews == null) {
+            return;
+        }
+        for (View view : mViews) {
+            //设置壁纸
+            ViewUtil.setBackGround(view, SPHelper.getWallPaperPosition(getActivity()));
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 使用事件总线监听回调
+     *
+     * @param event
+     */
+    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBaseEvent(final BaseEvent event) {
+        switch (event.type) {
+            case BaseEvent.WALLPAPER_UPDATE: {//壁纸
+                updateBG();
+                break;
+            }
+        }
     }
 }

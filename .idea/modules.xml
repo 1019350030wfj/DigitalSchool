@@ -3,10 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DigitalEducation.iml" filepath="$PROJECT_DIR$/DigitalEducation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FileDownloader/FileDownloader.iml" filepath="$PROJECT_DIR$/FileDownloader/FileDownloader.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/autolayout/autolayout.iml" filepath="$PROJECT_DIR$/autolayout/autolayout.iml" />
-      <module fileurl="file://$PROJECT_DIR$/filepicker/filepicker.iml" filepath="$PROJECT_DIR$/filepicker/filepicker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jaydenim/jaydenim.iml" filepath="$PROJECT_DIR$/jaydenim/jaydenim.iml" />
       <module fileurl="file://$PROJECT_DIR$/netlibrary/netlibrary.iml" filepath="$PROJECT_DIR$/netlibrary/netlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/pagestate/pagestate.iml" filepath="$PROJECT_DIR$/pagestate/pagestate.iml" />
     </modules>

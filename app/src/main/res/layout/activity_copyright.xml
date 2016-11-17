@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.onesoft.digitaledu.widget.FixWidthHeightRatioView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_my_copyright_logo"
+        app:whratio="2.25"/>
+
+    <View
+        style="@style/DividerHorizontal1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/person_info_title"
+            android:text="@string/current_version"/>
+        <TextView
+            android:id="@+id/txt_current_version"
+            style="@style/person_info_title1"
+            android:text="V1.0"/>
+        <ImageView
+            android:id="@+id/img_current_version"
+            style="@style/next"/>
+    </RelativeLayout>
+
+    <View
+        style="@style/DividerHorizontal1"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/person_info_title"
+            android:text="@string/client_phone"/>
+        <TextView
+            android:id="@+id/txt_client_phone"
+            style="@style/person_info_title1"
+            android:text="0592-2105111"/>
+        <ImageView
+            android:id="@+id/img_client_phone"
+            style="@style/next"/>
+    </RelativeLayout>
+
+    <View
+        style="@style/DividerHorizontal1"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/person_info_title"
+            android:text="@string/official_site"/>
+        <TextView
+            android:id="@+id/txt_official_site"
+            style="@style/person_info_title1"
+            android:text="www.onesoft.com.cn"/>
+        <ImageView
+            android:id="@+id/img_official_site"
+            style="@style/next"/>
+    </RelativeLayout>
+
+    <View
+        style="@style/DividerHorizontal1"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/person_info_title"
+            android:text="@string/email_address"/>
+        <TextView
+            android:id="@+id/txt_email_address"
+            style="@style/person_info_title1"
+            android:text="sales@onesoft.com.cn"/>
+        <ImageView
+            android:id="@+id/img_email_address"
+            style="@style/next"/>
+    </RelativeLayout>
+
+    <View
+        style="@style/DividerHorizontal1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/color_f2f2f2"
+        android:gravity="bottom|center_horizontal"
+        android:padding="30dp"
+        android:text="Copyright © 2016-2018 onesoft.com"
+        android:textColor="@color/color_B7B7B7"
+        android:textSize="@dimen/size12"
+    />
+</LinearLayout>

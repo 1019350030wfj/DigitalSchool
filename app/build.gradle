@@ -20,8 +20,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'org.greenrobot:eventbus:3.0.0'
     compile project(':pagestate')
     compile project(':netlibrary')
-
     compile 'com.android.support:design:24.2.1'
+    compile project(':FileDownloader')
 }
