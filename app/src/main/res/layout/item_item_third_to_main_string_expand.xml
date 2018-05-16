@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_item_height_third"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rl_item"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_item_height_third_item"
+        android:paddingBottom="@dimen/dimen5"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen10">
+        <TextView
+            android:id="@+id/item_item_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu_name"
+            android:textColor="@color/color_BBBBBB"
+            android:textSize="@dimen/size12"/>
+        <TextView
+            android:id="@+id/item_item_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/item_item_key"
+            android:ellipsize="end"
+            android:gravity="right|center_vertical"
+            android:maxLines="1"
+            android:text="@string/menu_name"
+            android:textColor="@color/color_888"
+            android:textSize="@dimen/size12"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10"/>
+</LinearLayout>

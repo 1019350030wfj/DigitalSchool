@@ -16,6 +16,8 @@ import com.onesoft.digitaledu.R;
 import com.onesoft.digitaledu.presenter.BasePresenter;
 import com.onesoft.pagestate.PageStateLayout;
 
+import butterknife.ButterKnife;
+
 import static com.onesoft.digitaledu.R.id.toolbar;
 
 
@@ -48,6 +50,9 @@ public abstract class ToolBarActivity<T extends BasePresenter> extends BaseActiv
                 .setOnErrorListener(mOnErrorListener)
                 .load(mContainer, initContentView(getLayoutInflater()));
 //        mContainer.addView(initContentView(getLayoutInflater()));
+
+        ButterKnife.bind(this);
+
         mPageStateLayout.onLoading();
         mTopMargin = findViewById(R.id.v_top);
         mToolbar = (Toolbar) findViewById(toolbar);

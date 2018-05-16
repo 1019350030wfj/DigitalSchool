@@ -39,7 +39,7 @@ public class TreeItem1Holder extends BaseViewHolder {
             expand.setRotation(90);
             List<TreeItem> children = itemData.mChildren;
             if (children != null) {
-                count.setText(String.format("%s", itemData.total));
+                count.setText(String.format("%s", itemData.mChildren.size()));
             }
             count.setVisibility(View.VISIBLE);
         } else {
@@ -62,7 +62,7 @@ public class TreeItem1Holder extends BaseViewHolder {
                         rotationExpandIcon(0, 90);
                         List<TreeItem> children = itemData.mChildren;
                         if (children != null) {
-                            count.setText(String.format("%s", itemData.total));
+                            count.setText(String.format("%s", itemData.mChildren.size()));
                         }
                         count.setVisibility(View.VISIBLE);
                     }

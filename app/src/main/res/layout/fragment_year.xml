@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.onesoft.digitaledu.widget.calendar.JaydenViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/jayden_viewpager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen5"
+    android:paddingRight="@dimen/dimen5">
+
+    <com.onesoft.digitaledu.widget.calendar.custom.YearView
+        android:id="@+id/year_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+    <com.onesoft.digitaledu.widget.calendar.custom.YearView
+        android:id="@+id/year_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+    <com.onesoft.digitaledu.widget.calendar.custom.YearView
+        android:id="@+id/year_view3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+
+</com.onesoft.digitaledu.widget.calendar.JaydenViewPager>

@@ -4,9 +4,11 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.READ_OWNER_DATA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
@@ -26,24 +28,114 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
-        <activity android:name=".view.activity.MainActivity">
+        <activity android:name=".view.activity.login.WelcomeActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".view.activity.login.LoginActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.MainActivity"
+                  android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.twolevel.TwoLevelActivity"/>
         <activity android:name=".view.activity.message.SendMessageActivity"/>
+        <activity android:name=".view.activity.message.ReplyMessageActivity"/>
         <activity android:name=".view.activity.message.MessageDetailActivity"/>
+        <activity android:name=".view.activity.message.MessageDetailSendActivity"/>
         <activity android:name=".widget.treerecyclerview.activity.TreeActivity"/>
         <activity android:name=".view.activity.person.OfflineDownloadActivity"/>
         <activity android:name=".view.activity.person.ModifyPwdActivity"/>
-        <activity android:name=".view.activity.person.PersonInfoActivity"/>
+        <activity android:name=".view.activity.person.PersonInfoActivity"
+                  android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".view.activity.person.ModifyPersonInfoActivity"
+                  android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".view.activity.person.ChangeAvatarActivity"/>
         <activity android:name=".view.activity.person.CopyrightActivity"/>
         <activity android:name=".view.activity.person.wallpaper.WallPagerActivity"/>
         <activity android:name=".view.activity.person.wallpaper.WallpaperSettingActivity"/>
+        <activity android:name=".view.activity.person.feedback.FeedbackActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".widget.calendar.activity.AgendaAddActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".widget.calendar.activity.AgendaDetailActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".widget.calendar.activity.AgendaEditActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+
+        <activity android:name=".view.activity.publicfoundation.menu.MenuManagerActivity"/>
+        <activity android:name=".view.activity.BaseSearchActivity"/>
+        <activity android:name=".view.activity.publicfoundation.menu.OperatorBtnEditActivity"/>
+
+        <activity android:name=".view.activity.ThirdToMainListActivity"/>
+        <activity android:name=".view.activity.publicfoundation.department.DepartmentAddActivity"/>
+        <activity android:name=".view.activity.publicfoundation.department.SubordinateAddActivity"/>
+        <activity android:name=".view.activity.publicfoundation.CustomDataBackupActivity"/>
+        <activity android:name=".view.activity.infomanager.contacts.ContactActivity"/>
+        <activity android:name=".view.activity.infomanager.contacts.ContactAddActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.activity.infomanager.contacts.ContactInfoActivity"/>
+        <activity android:name=".view.activity.infomanager.contacts.ContactGroupInfoActivity"/>
+        <activity android:name=".view.activity.infomanager.contacts.ContactPersonInfoActivity"/>
+        <activity android:name=".view.activity.ThirdMenuActivity"/>
+        <activity android:name=".view.template.Template10AddDynamicActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.template.Template11DynamicActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.module.AnnouceAddActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.module.AnnouceEditActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.template.Template10CampusManagerActivity"/>
+        <activity android:name=".view.template.Template16Activity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.activity.common.SelectTeacherActivity"/>
+        <activity android:name=".widget.treerecyclerview.activity.TreeTemplate16Activity"/>
+        <activity android:name=".view.template.Template23EditDynamicActivity"/>
+        <activity android:name=".view.template.Template27Activity"/>
+        <activity android:name=".view.template.Template26AddDynamicActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.template.Template42EditDynamicActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.activity.ThirdMainRecoveryImplListActivity"/>
+        <activity
+            android:name=".view.activity.infomanager.contacts.ModifyPersonContactInfoActivity"/>
+        <activity android:name=".widget.calendar.CalendarNotepadActivity"/>
+
+        <activity android:name=".view.activity.infomanager.docsendrec.DocumentSendReceiveActivity"/>
+        <activity android:name=".view.activity.infomanager.docsendrec.DocRecDetailActivity"/>
+        <activity android:name=".view.activity.infomanager.docsendrec.ReplyDocActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.activity.infomanager.docsendrec.SendDocActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".view.activity.infomanager.docsendrec.DocDetailSendActivity"/>
+        <activity android:name=".widget.lookbigimage.LookBigPicActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/LookBigPicTheme"/>
+        <activity android:name=".view.activity.infomanager.docsendrec.AttachCannotOpenActivity"/>
+        <activity android:name=".view.activity.common.SelectTeacherMoreActivity"/>
+        <activity android:name=".view.activity.infomanager.attendancelog.AttendanceLogActivity"/>
+        <activity
+            android:name=".view.activity.infomanager.attendancelog.AttendanceLogDetailActivity"/>
+        <activity android:name=".view.activity.infomanager.contacts.ContactPersonSearchActivity"/>
+
     </application>
 
 </manifest>

@@ -16,9 +16,10 @@ import com.onesoft.digitaledu.R;
 
 public class SelectMessageDialog extends Dialog {
 
-    public static final int TYPE_MESSAGE = 0;
-    public static final int TYPE_NOTICE = 1;
+    public static final int TYPE_MESSAGE = 1;//消息
+    public static final int TYPE_NOTICE = 0;//通知
 
+    private TextView mTxtTitle;
     private TextView mTxtNotice;
     private TextView mTxtMessage;
 
@@ -35,6 +36,7 @@ public class SelectMessageDialog extends Dialog {
         mlp.gravity = Gravity.CENTER;
         getWindow().setAttributes(mlp);
 
+        mTxtTitle = (TextView) findViewById(R.id.txt_title);
         mTxtNotice = (TextView) findViewById(R.id.txt_notice);
         mTxtMessage = (TextView) findViewById(R.id.txt_msg);
 
@@ -72,6 +74,10 @@ public class SelectMessageDialog extends Dialog {
 
     public void setSelectTypeListener(ISelectMsgType iSelectMsgType) {
         this.mListener = iSelectMsgType;
+    }
+
+    public void setTitleText(String title) {
+        mTxtTitle.setText(title);
     }
 
     public void setText(String string, String string1) {

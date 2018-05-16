@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.onesoft.digitaledu.widget.FixWHRatioFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_r0_fff_d9d9d9">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/topic_btn_addimg_nor"
+        android:scaleType="centerCrop"/>
+</com.onesoft.digitaledu.widget.FixWHRatioFrameLayout>

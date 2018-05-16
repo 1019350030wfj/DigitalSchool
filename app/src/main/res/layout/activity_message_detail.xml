@@ -111,7 +111,10 @@
                 <TextView
                     android:id="@+id/txt_recipient"
                     style="@style/send_message_title_right"
-                    android:text=""/>
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:paddingRight="@dimen/dimen15"
+                />
                 <ImageView
                     android:id="@+id/img_type"
                     android:layout_width="wrap_content"
@@ -120,6 +123,7 @@
                     android:layout_centerVertical="true"
                     android:paddingRight="@dimen/dimen15"
                     android:src="@drawable/icon_next_nor"/>
+
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"

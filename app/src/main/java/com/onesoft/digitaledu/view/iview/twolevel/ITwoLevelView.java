@@ -1,6 +1,6 @@
 package com.onesoft.digitaledu.view.iview.twolevel;
 
-import com.onesoft.digitaledu.model.TwoLevelTitle;
+import com.onesoft.digitaledu.model.TopDirectory;
 import com.onesoft.digitaledu.view.iview.IBaseView;
 
 import java.util.List;
@@ -11,5 +11,5 @@ import java.util.List;
 
 public interface ITwoLevelView extends IBaseView {
 
-    void onGetTwoLevel(List<TwoLevelTitle> twoLevelTitles);
+    void onGetTwoLevel(String id,List<TopDirectory> twoLevelTitles);
 }

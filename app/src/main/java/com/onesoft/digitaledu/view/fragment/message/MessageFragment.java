@@ -1,5 +1,6 @@
 package com.onesoft.digitaledu.view.fragment.message;
 
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -9,11 +10,14 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.onesoft.digitaledu.R;
+import com.onesoft.digitaledu.model.BoxBean;
+import com.onesoft.digitaledu.utils.RemindUtils;
 import com.onesoft.digitaledu.view.activity.MainActivity;
 import com.onesoft.digitaledu.view.activity.message.SendMessageActivity;
 import com.onesoft.digitaledu.view.fragment.BaseTitleFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 消息主页
@@ -75,13 +79,7 @@ public class MessageFragment extends BaseTitleFragment {
                         if (popupWindow.isShowing()) {
                             popupWindow.dismiss();
                         }
-                        showDeleteMode();
-                        updateDeleteNum("0");
-                        if (mCurSelectPage == 0) {
-                            ((InBoxFragment) mFragmentList.get(0)).setBoxAdapterDeleteMode(true);
-                        } else {
-                            ((BoxFragment) mFragmentList.get(1)).setBoxAdapterDeleteMode(true);
-                        }
+                       handleDelete();
                     }
                 });
 
@@ -106,6 +104,13 @@ public class MessageFragment extends BaseTitleFragment {
         });
     }
 
+    public void handleDelete(){
+        showDeleteMode();
+        updateDeleteNum();
+        ((InBoxFragment) mFragmentList.get(0)).setBoxAdapterDeleteMode(true);
+        ((SendingBoxFragment) mFragmentList.get(1)).setBoxAdapterDeleteMode(true);
+    }
+
     public void showDeleteMode() {//当是删除模式的时候
         if (!mIsDeleteMode) {
             getTitleBar().leftPart.setVisibility(View.VISIBLE);
@@ -126,22 +131,36 @@ public class MessageFragment extends BaseTitleFragment {
 
         ((MainActivity) getActivity()).normalState();
         ((InBoxFragment) mFragmentList.get(0)).setBoxAdapterDeleteMode(false);
-        ((BoxFragment) mFragmentList.get(1)).setBoxAdapterDeleteMode(false);
+        ((SendingBoxFragment) mFragmentList.get(1)).setBoxAdapterDeleteMode(false);
         mIsDeleteMode = false;
     }
 
-    public void updateDeleteNum(String content) {
-        getTitleBar().titleRight.setText(getActivity().getResources().getString(R.string.already_select_delete, content));
+    public void updateDeleteNum() {
+        if (mIsDeleteMode){
+            List<BoxBean> list;
+            int count = 0;
+            if (mCurSelectPage == 0) {
+                list = ((InBoxFragment) mFragmentList.get(0)).getDatas();
+            } else {
+                list = ((SendingBoxFragment) mFragmentList.get(1)).getDatas();
+            }
+            for (BoxBean boxBean : list) {
+                if (boxBean.isDelete) {//需要删除的
+                    count++;
+                }
+            }
+            getTitleBar().titleRight.setText(getActivity().getResources().getString(R.string.already_select_delete, count));
+        }
     }
 
     @Override
     public void initData() {
         mFragmentList = new ArrayList<>();
         mFragmentList.add(InBoxFragment.newInstance("InBox"));
-        mFragmentList.add(BoxFragment.newInstance("SendingBox"));
+        mFragmentList.add(SendingBoxFragment.newInstance("SendingBox"));
         mAdapter = new ViewPagerAdapter(getChildFragmentManager(), mFragmentList);
         mViewPager.setAdapter(mAdapter);
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -158,6 +177,7 @@ public class MessageFragment extends BaseTitleFragment {
                     mIndicatorView1.setSelected(false);
                     mIndicatorView2.setSelected(true);
                 }
+                updateDeleteNum();
             }
 
             @Override
@@ -172,6 +192,7 @@ public class MessageFragment extends BaseTitleFragment {
                 mViewPager.setCurrentItem(1);
             }
         });
+
         mLlCurrency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,12 +200,7 @@ public class MessageFragment extends BaseTitleFragment {
             }
         });
 
-        mLlCurrency.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mPageStateLayout.onSucceed();
-            }
-        }, 2000);
+        mPageStateLayout.onSucceed();
     }
 
     private int mCurSelectPage;
@@ -200,7 +216,22 @@ public class MessageFragment extends BaseTitleFragment {
         if (mCurSelectPage == 0) {
             ((InBoxFragment) mFragmentList.get(0)).setSelectAll(isSelectAll);
         } else {
-            ((BoxFragment) mFragmentList.get(1)).setSelectAll(isSelectAll);
+            ((SendingBoxFragment) mFragmentList.get(1)).setSelectAll(isSelectAll);
         }
+    }
+
+    public void delete() {
+        RemindUtils.showDialogWithNag(getActivity(),
+                getResources().getString(R.string.is_delete), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (mCurSelectPage == 0) {//判断当前选中的是哪一页
+                            ((InBoxFragment) mFragmentList.get(0)).delete();
+                        } else {
+                            ((SendingBoxFragment) mFragmentList.get(1)).delete();
+                        }
+                    }
+                });
+
     }
 }

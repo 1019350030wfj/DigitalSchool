@@ -37,6 +37,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         mPageStateLayout = new PageStateLayout(getActivity());
         initPageState();
         mPageStateLayout.load(rootView, mContentView);
+        mPageStateLayout.onLoading();
         initPresenter();
         return rootView;
     }

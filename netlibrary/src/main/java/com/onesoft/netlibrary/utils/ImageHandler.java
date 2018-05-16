@@ -68,7 +68,21 @@ public class ImageHandler {
         if (checkActivityNull(context)) {
             return;
         }
-        Glide.with(context).load(url).asBitmap().diskCacheStrategy(DiskCacheStrategy.RESULT).error(R.drawable.digital_default).into(target);
+        Glide.with(context).load(url)
+                .asBitmap().diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .error(R.drawable.digital_default)
+                .into(target);
+    }
+
+    public static void getBigFileImage(Activity context, ImageView image, String path, Target target) {
+        image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        if (checkActivityNull(context)) {
+            return;
+        }
+        Glide.with(context).load(new File(path))
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .error(R.drawable.digital_default)
+                .into(target);
     }
 
     public static void getBigFileImage(Activity context, ImageView imageView, String path) {
@@ -96,7 +110,8 @@ public class ImageHandler {
                 return;
             }
             Glide.with(context).load(new File(path))
-                    .diskCacheStrategy(DiskCacheStrategy.RESULT).error(R.drawable.digital_default)
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                    .error(R.drawable.digital_default)
                     .into(imageView);
         }
     }
@@ -113,6 +128,22 @@ public class ImageHandler {
         }
         Glide.with(context).load(url).asBitmap()
                 .placeholder(R.drawable.icon_default_avatar).error(R.drawable.icon_default_avatar)
+                .transform(new CircleTransform(context)).centerCrop().diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .dontAnimate().into(imageView);
+    }
+    /**
+     * 从url加载用户头像
+     */
+    public static void getAvater(Activity context, final ImageView imageView, String url,int defaultId) {
+        if (TextUtils.isEmpty(url)) {
+            imageView.setImageDrawable(context.getResources().getDrawable(defaultId));
+            return;
+        }
+        if (checkActivityNull(context)) {
+            return;
+        }
+        Glide.with(context).load(url).asBitmap()
+                .placeholder(defaultId).error(defaultId)
                 .transform(new CircleTransform(context)).centerCrop().diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .dontAnimate().into(imageView);
     }
@@ -153,7 +184,7 @@ public class ImageHandler {
     /**
      * 从file记载普通图片
      */
-    public static void getFileImage(Activity context, final ImageView mImageView, String path, int width, int height) {
+    public static void getFileImage(Activity context, final ImageView mImageView, String path) {
         mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         if (TextUtils.isEmpty(path)) {
             mImageView.setImageDrawable(context.getResources().getDrawable(R.drawable.digital_default));
@@ -163,8 +194,9 @@ public class ImageHandler {
             return;
         }
         Glide.with(context).load(new File(path))
-                .placeholder(R.drawable.digital_default).error(R.drawable.digital_default).diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .override(width, height).centerCrop()
+                .placeholder(R.drawable.digital_default).error(R.drawable.digital_default)
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .centerCrop()
                 .into(mImageView);
     }
 

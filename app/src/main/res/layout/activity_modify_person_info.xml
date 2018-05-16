@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f2f2f2">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:layout_marginTop="@dimen/dimen15"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10">
+
+        <ImageView
+            android:id="@+id/img_search_del"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:background="@drawable/icon_find_del"/>
+
+        <EditText
+            android:id="@+id/edt_search"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_toLeftOf="@id/img_search_del"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingTop="@dimen/dimen5"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/size12"
+        />
+    </RelativeLayout>
+</FrameLayout>

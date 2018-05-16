@@ -5,6 +5,13 @@
 
     <dimen name="both_sides_distance">0.5dp</dimen>
 
+    <dimen name="dialog_width0">260dp</dimen>
+    <dimen name="dialog_width1">200dp</dimen>
+
+    <dimen name="height_login">36dp</dimen>
+    <dimen name="btn_up_margin_bottom">70dp</dimen>
+    <dimen name="dimen_item_height_third">32dp</dimen>
+    <dimen name="dimen_item_height_third_item">31dp</dimen>
     <dimen name="dimen45">45dp</dimen>
     <dimen name="dimen42">42dp</dimen>
     <dimen name="dimen38">38dp</dimen>
@@ -35,4 +42,8 @@
     <dimen name="size_title_fragment">18sp</dimen>
     <dimen name="height_title_fragment">53dp</dimen>
     <dimen name="home_bottom_height">59dp</dimen>
+    <dimen name="tab_indicator_height">2dp</dimen>
+
+    <!-- MonthViewPager -->
+    <dimen name="icon_margin">13dp</dimen>
 </resources>

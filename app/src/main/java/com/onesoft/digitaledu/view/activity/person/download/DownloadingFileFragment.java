@@ -14,7 +14,9 @@ import com.onesoft.digitaledu.view.iview.person.IDownloadNowView;
 
 import org.wlf.filedownloader.DownloadFileInfo;
 import org.wlf.filedownloader.FileDownloader;
+import org.wlf.filedownloader.listener.OnDeleteDownloadFilesListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,10 +57,29 @@ public class DownloadingFileFragment extends BaseFragment<DownloadNowPresenter> 
     @Override
     protected void initData(Bundle savedInstanceState) {
         mAdapter = new DownloadingAdapter(getActivity());
+        mAdapter.setDownloadingListener(new DownloadingAdapter.OnDownloadingListener() {
+            @Override
+            public void onComplete() {//更新已经下载完列表
+                ((OfflineDownloadActivity) getActivity()).updateShow();
+                showPageState();//更新本页面
+            }
+
+            @Override
+            public void onDelete() {
+                ((OfflineDownloadActivity) getActivity()).updateDeleteNum();
+            }
+        });
         mListView.setAdapter(mAdapter);
         FileDownloader.registerDownloadStatusListener(mAdapter);//监听下载状态的变化
-//        mPresenter.getDownloadData();
-        mPageStateLayout.onSucceed();
+        showPageState();
+    }
+
+    public void showPageState() {
+        if (mAdapter.getDatas() != null && mAdapter.getDatas().size() > 0) {
+            mPageStateLayout.onSucceed();
+        } else {
+            mPageStateLayout.onEmpty();
+        }
     }
 
     @Override
@@ -68,7 +89,7 @@ public class DownloadingFileFragment extends BaseFragment<DownloadNowPresenter> 
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 ((OfflineDownloadActivity) getActivity()).showDeleteMode();//长按是删除模式
                 setBoxAdapterDeleteMode(true);
-                ((OfflineDownloadActivity) getActivity()).updateDeleteNum("0");
+                ((OfflineDownloadActivity) getActivity()).updateDeleteNum();
                 return true;
             }
         });
@@ -79,7 +100,6 @@ public class DownloadingFileFragment extends BaseFragment<DownloadNowPresenter> 
             }
         });
     }
-
 
     private boolean mIsDeleteMode;
 
@@ -121,5 +141,43 @@ public class DownloadingFileFragment extends BaseFragment<DownloadNowPresenter> 
         FileDownloader.pauseAll();
         // unregisterDownloadStatusListener
         FileDownloader.unregisterDownloadStatusListener(mAdapter);
+    }
+
+    public void delete() {//删除
+        if (mIsDeleteMode) {//是删除模式才做删除操作
+            List<String> deleteUrls = new ArrayList<>();
+            for (DownloadFileInfo boxBean : mAdapter.getDatas()) {
+                if (boxBean.isDelete) {//需要删除的
+                    deleteUrls.add(boxBean.getUrl());
+                }
+            }
+            if (deleteUrls.size() > 0) {
+                FileDownloader.delete(deleteUrls, true, new OnDeleteDownloadFilesListener() {
+                    @Override
+                    public void onDeleteDownloadFilesPrepared(List<DownloadFileInfo> downloadFilesNeedDelete) {
+
+                    }
+
+                    @Override
+                    public void onDeletingDownloadFiles(List<DownloadFileInfo> downloadFilesNeedDelete, List<DownloadFileInfo> downloadFilesDeleted, List<DownloadFileInfo> downloadFilesSkip, DownloadFileInfo downloadFileDeleting) {
+
+                    }
+
+                    @Override
+                    public void onDeleteDownloadFilesCompleted(List<DownloadFileInfo> downloadFilesNeedDelete, List<DownloadFileInfo> downloadFilesDeleted) {
+                        mAdapter.updateShow();
+                        showPageState();
+                        ((OfflineDownloadActivity) getActivity()).updateDeleteNum();
+                    }
+                });
+            }
+        }
+    }
+
+    public List<DownloadFileInfo> getDatas() {
+        if (mAdapter != null) {
+            return mAdapter.getDatas();
+        }
+        return null;
     }
 }

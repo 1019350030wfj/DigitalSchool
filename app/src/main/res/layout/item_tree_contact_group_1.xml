@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/expand"
+        android:layout_width="@dimen/dimen10"
+        android:layout_height="@dimen/dimen10"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:contentDescription="@null"
+        android:src="@drawable/icon_menss_triangle_nor"/>
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dimen17"
+        android:layout_toRightOf="@id/expand"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingBottom="15dp"
+        android:paddingTop="19dp"
+        android:text="教师"
+        android:textColor="@color/color_333"
+        android:textSize="14sp"/>
+
+    <ImageView
+        android:id="@+id/img_del"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/bg_contact_group_del"/>
+
+    <ImageView
+        android:id="@+id/img_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@id/img_del"
+        android:src="@drawable/bg_contact_msg"/>
+
+    <ImageView
+        android:id="@+id/img_add_member"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@id/img_msg"
+        android:src="@drawable/bg_contact_group_add_user"/>
+
+</RelativeLayout>

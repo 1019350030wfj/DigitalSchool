@@ -9,17 +9,29 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 import com.onesoft.digitaledu.R;
+import com.onesoft.digitaledu.model.BaseEvent;
+import com.onesoft.digitaledu.model.ListBean;
 import com.onesoft.digitaledu.model.TopDirectory;
-import com.onesoft.digitaledu.model.TwoLevelTitle;
 import com.onesoft.digitaledu.presenter.twolevel.TwoLevelPresenter;
 import com.onesoft.digitaledu.utils.SPHelper;
 import com.onesoft.digitaledu.utils.Utils;
 import com.onesoft.digitaledu.utils.ViewUtil;
+import com.onesoft.digitaledu.view.activity.ThirdMenuActivity;
+import com.onesoft.digitaledu.view.activity.ThirdToMainListActivity;
 import com.onesoft.digitaledu.view.activity.ToolBarActivity;
+import com.onesoft.digitaledu.view.activity.infomanager.attendancelog.AttendanceLogActivity;
+import com.onesoft.digitaledu.view.activity.infomanager.contacts.ContactActivity;
+import com.onesoft.digitaledu.view.activity.infomanager.docsendrec.DocumentSendReceiveActivity;
 import com.onesoft.digitaledu.view.fragment.home.TopDirectoryAdapter;
 import com.onesoft.digitaledu.view.iview.twolevel.ITwoLevelView;
+import com.onesoft.digitaledu.widget.calendar.CalendarNotepadActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Jayden on 2016/10/29.
@@ -29,16 +41,21 @@ public class TwoLevelActivity extends ToolBarActivity<TwoLevelPresenter> impleme
 
     public static final String PARAM = "params";
 
-    public static void startTwoLevelActivity(Context context, TopDirectory topDirectory) {
+    public static void startTwoLevelActivity(Context context, List<TopDirectory> directories, int position) {
         Intent intent = new Intent(context, TwoLevelActivity.class);
-        intent.putExtra(PARAM, topDirectory);
+        intent.putExtra(PARAM, (Serializable) directories);
+        intent.putExtra("pos", position);
         context.startActivity(intent);
     }
 
-    private TopDirectory mTopDirectory;
+    private List<TopDirectory> mTopDirectory;
+    private int mSelectPos;
+
+    private Map<String, List<TopDirectory>> mCacheTwoLevel = new HashMap<>();
 
     private void getDataFromForward() {
-        mTopDirectory = (TopDirectory) getIntent().getExtras().getSerializable(PARAM);
+        mTopDirectory = (List<TopDirectory>) getIntent().getExtras().getSerializable(PARAM);
+        mSelectPos = getIntent().getExtras().getInt("pos");
     }
 
     private View mLLView;
@@ -77,8 +94,40 @@ public class TwoLevelActivity extends ToolBarActivity<TwoLevelPresenter> impleme
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 setTitle(mTitleAdapter.getDatas().get(position).name);
-                mTopDirectoryAdapter.setDatas(mTitleAdapter.getDatas().get(position).mDirectories);
                 mTitleAdapter.setSelectId(mTitleAdapter.getDatas().get(position).id);
+                //请求数据
+                if (mCacheTwoLevel.containsKey(mTitleAdapter.getDatas().get(position).id)) {
+                    mTopDirectoryAdapter.setDatas(mCacheTwoLevel.get(mTitleAdapter.getDatas().get(position).id));
+                } else {//内存缓存
+                    mPresenter.getTwoLevelTitle(mTitleAdapter.getDatas().get(position).id);
+                }
+            }
+        });
+
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TopDirectory topDirectory = mTopDirectoryAdapter.getItem(position);
+                if ("126".equals(topDirectory.id)) {//个人信息
+                    EventBus.getDefault().post(new BaseEvent(BaseEvent.TURN_TO_MINE, ""));
+                    finish();
+                } else if ("55".equals(topDirectory.id)) {//消息中心
+                    EventBus.getDefault().post(new BaseEvent(BaseEvent.TURN_TO_MESSAGE, ""));
+                    finish();
+                } else if ("789".equals(topDirectory.id)) {//我的考勤日志
+                    startActivity(new Intent(TwoLevelActivity.this, AttendanceLogActivity.class));
+                } else if ("726".equals(topDirectory.id)) {//公文收发
+                    startActivity(new Intent(TwoLevelActivity.this, DocumentSendReceiveActivity.class));
+                } else if ("95".equals(topDirectory.id)) {//通讯录
+                    startActivity(new Intent(TwoLevelActivity.this, ContactActivity.class));
+                } else if ("514".equals(topDirectory.id)) {//记事日历
+                    startActivity(new Intent(TwoLevelActivity.this, CalendarNotepadActivity.class));
+                } else if ("1".equals(topDirectory.isLeaf)) {
+                    ThirdMenuActivity.startThirdMenu(TwoLevelActivity.this, topDirectory);
+                } else {//没有三级菜单
+                    ListBean listBean = new ListBean(topDirectory.id, topDirectory.name);
+                    ThirdToMainListActivity.startThirdToMainList(TwoLevelActivity.this, listBean);
+                }
             }
         });
     }
@@ -86,22 +135,31 @@ public class TwoLevelActivity extends ToolBarActivity<TwoLevelPresenter> impleme
     @Override
     public void initData() {
         super.initData();
-        mPresenter.getTwoLevelTitle(mTopDirectory.id);
-        setTitle(mTopDirectory.name);
+        setTitle(mTopDirectory.get(mSelectPos).name);
         //设置壁纸
         ViewUtil.setBackGround(mLLView, SPHelper.getWallPaperPosition(this));
+
+        mTitleAdapter.setDatas(mTopDirectory);
+        mTitleAdapter.setSelectId(mTopDirectory.get(mSelectPos).id);
+        mListView.setSelection(mSelectPos);
+
+        //请求数据
+        mPresenter.getTwoLevelTitle(mTopDirectory.get(mSelectPos).id);
+        mPageStateLayout.onSucceed();
     }
 
     @Override
-    public void onGetTwoLevel(List<TwoLevelTitle> twoLevelTitles) {
-        mTitleAdapter.setDatas(twoLevelTitles);
-        mTitleAdapter.setSelectId(twoLevelTitles.get(0).id);
-        mTopDirectoryAdapter.setDatas(mTitleAdapter.getDatas().get(0).mDirectories);
-        mListView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mPageStateLayout.onSucceed();
-            }
-        },2000);
+    public void onGetTwoLevel(String id, List<TopDirectory> twoLevelTitles) {
+        mCacheTwoLevel.put(id, twoLevelTitles);//内存缓存
+        mTopDirectoryAdapter.setDatas(twoLevelTitles);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (mCacheTwoLevel != null) {
+            mCacheTwoLevel.clear();
+            mCacheTwoLevel = null;
+        }
     }
 }

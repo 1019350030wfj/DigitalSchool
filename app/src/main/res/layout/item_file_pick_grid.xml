@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.onesoft.digitaledu.widget.FixWHRatioFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_r0_fff_d9d9d9">
+
+    <LinearLayout
+        android:id="@+id/ll_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_ebebeb"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/icon_annex_papers"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/txt_file_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxEms="10"
+            android:maxLines="2"
+            android:padding="@dimen/dimen5"
+            android:text="用户管理后台功能需求说明文档2016年第二版.xlsx"
+            android:textColor="@color/color_1A1A1A"
+            android:textSize="@dimen/size12"/>
+        <TextView
+            android:id="@+id/txt_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="2.4MB"
+            android:textColor="@color/color_BBBBBB"
+            android:textSize="@dimen/size10"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="top|right"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_annex_del"/>
+
+
+</com.onesoft.digitaledu.widget.FixWHRatioFrameLayout>

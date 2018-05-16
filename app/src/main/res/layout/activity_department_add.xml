@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f2f2f2"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen15">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/send_message_title"
+                android:text="@string/department_name"/>
+            <EditText
+                android:id="@+id/edit_department_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="@dimen/dimen15"
+                android:background="@null"
+                android:hint="@string/need_write"
+                android:paddingTop="@dimen/dimen15"
+                android:textColor="@color/color_808080"
+                android:textSize="@dimen/size16"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_ebebeb"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/send_message_title"
+                android:text="@string/department_work"/>
+            <EditText
+                android:id="@+id/edit_department_work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="@dimen/dimen15"
+                android:background="@null"
+                android:hint="@string/need_write"
+                android:paddingTop="@dimen/dimen15"
+                android:textColor="@color/color_808080"
+                android:textSize="@dimen/size16"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_ebebeb"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/send_message_title"
+                android:text="@string/department_parent"/>
+            <TextView
+                android:id="@+id/txt_department_parent"
+                style="@style/send_message_title_right"
+                android:text="@string/department_parent_hint"/>
+
+            <ImageView
+                android:id="@+id/img_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/dimen15"
+                android:src="@drawable/icon_next_nor"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_ebebeb"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:minHeight="150dp"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+            <EditText
+                android:id="@+id/edit_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen15"
+                android:background="@null"
+                android:hint="@string/hint_content"
+                android:paddingTop="@dimen/dimen15"
+                android:textColor="@color/color_808080"
+                android:textSize="@dimen/size16"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

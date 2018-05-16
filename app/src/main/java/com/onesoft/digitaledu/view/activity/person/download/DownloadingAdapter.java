@@ -62,6 +62,10 @@ public class DownloadingAdapter extends BaseAdapter implements OnRetryableFileDo
         mSelectedDownloadFileInfos.clear();
     }
 
+    public List<DownloadFileInfo> getDatas() {
+        return mDownloadFileInfos;
+    }
+
     private List<DownloadFileInfo> getNoDownloadedFiles() {
         List<DownloadFileInfo> downloadFileInfos = new ArrayList<>();
         for (DownloadFileInfo downloadFileInfo : FileDownloader.getDownloadFiles()) {
@@ -240,6 +244,9 @@ public class DownloadingAdapter extends BaseAdapter implements OnRetryableFileDo
             public void onClick(View v) {
                 if (mISDeleteMode) {//删除模式
                     downloadFileInfo.isDelete = !downloadFileInfo.isDelete;
+                    if (mCompleteListener != null){//因为要更新Activity选中几个要被删除
+                        mCompleteListener.onDelete();
+                    }
                     notifyDataSetChanged();
                 }
             }
@@ -546,8 +553,11 @@ public class DownloadingAdapter extends BaseAdapter implements OnRetryableFileDo
             }
 
             setBackgroundOnClickListener(cacheConvertView, cacheConvertView.findViewById(R.id.img_look), downloadFileInfo);
-        } else {
-            updateShow();
+        }
+        updateShow();
+
+        if (mCompleteListener != null) {
+            mCompleteListener.onComplete();
         }
 
         Log.d(TAG, "onFileDownloadStatusCompleted url：" + url + "，status(正常应该是" + Status.DOWNLOAD_STATUS_COMPLETED +
@@ -616,5 +626,17 @@ public class DownloadingAdapter extends BaseAdapter implements OnRetryableFileDo
             mToast = Toast.makeText(mContext, text, Toast.LENGTH_SHORT);
         }
         mToast.show();
+    }
+
+    private OnDownloadingListener mCompleteListener;
+
+    public void setDownloadingListener(OnDownloadingListener listener) {
+        this.mCompleteListener = listener;
+    }
+
+    public interface OnDownloadingListener {
+        void onComplete();
+
+        void onDelete();
     }
 }

@@ -1,5 +1,6 @@
 package com.onesoft.digitaledu.view.iview.message;
 
+import com.onesoft.digitaledu.model.BoxDetail;
 import com.onesoft.digitaledu.view.iview.IBaseView;
 
 /**
@@ -7,4 +8,5 @@ import com.onesoft.digitaledu.view.iview.IBaseView;
  */
 
 public interface IMessageDetailView extends IBaseView{
+    void onSuccess(BoxDetail detail);
 }

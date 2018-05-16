@@ -1,29 +1,43 @@
 package com.onesoft.digitaledu.view.fragment.person;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.onesoft.digitaledu.R;
+import com.onesoft.digitaledu.model.PersonEvent;
+import com.onesoft.digitaledu.model.PersonInfo;
+import com.onesoft.digitaledu.presenter.person.PersonInfoPresenter;
+import com.onesoft.digitaledu.utils.SPHelper;
+import com.onesoft.digitaledu.view.activity.login.LoginActivity;
 import com.onesoft.digitaledu.view.activity.person.CopyrightActivity;
 import com.onesoft.digitaledu.view.activity.person.ModifyPwdActivity;
 import com.onesoft.digitaledu.view.activity.person.OfflineDownloadActivity;
 import com.onesoft.digitaledu.view.activity.person.PersonInfoActivity;
+import com.onesoft.digitaledu.view.activity.person.feedback.FeedbackActivity;
 import com.onesoft.digitaledu.view.activity.person.wallpaper.WallPagerActivity;
 import com.onesoft.digitaledu.view.fragment.BaseFragment;
+import com.onesoft.digitaledu.view.iview.person.IPersonInfoView;
 import com.onesoft.digitaledu.widget.CircleImageView;
 import com.onesoft.digitaledu.widget.dialog.FileDownloadDialog;
+import com.onesoft.netlibrary.utils.ImageHandler;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.wlf.filedownloader.FileDownloader;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 我的页面
  * Created by Jayden on 2016/10/28.
  */
 
-public class PersonFragment extends BaseFragment {
+public class PersonFragment extends BaseFragment<PersonInfoPresenter> implements IPersonInfoView {
 
     private CircleImageView mIvAvater;
     private TextView mTvUserName;
@@ -40,6 +54,9 @@ public class PersonFragment extends BaseFragment {
     private View mRLWallpaper;
     private View mRLFeedback;
     private View mRLVersion;
+    private View mBtnExit;
+
+    private PersonInfo mPersonInfo;
 
     @Override
     protected int getLayoutResId() {
@@ -63,6 +80,7 @@ public class PersonFragment extends BaseFragment {
         mRLWallpaper = view.findViewById(R.id.rl_wallpaper);
         mRLFeedback = view.findViewById(R.id.rl_feedback);
         mRLVersion = view.findViewById(R.id.rl_update);
+        mBtnExit = view.findViewById(R.id.btn_exit);
     }
 
     @Override
@@ -76,12 +94,7 @@ public class PersonFragment extends BaseFragment {
                     @Override
                     public void onConfirm() {
                         List<String> boxBeanList = new ArrayList<>();
-                        boxBeanList.add("http://mp4.28mtv.com/mp41/1862-刘德华-余生一起过[68mtv.com].mp4");
-                        boxBeanList.add("http://img13.360buyimg.com/n1/g14/M01/1B/1F/rBEhVlM03iwIAAAAAAFJnWsj5UAAAK8_gKFgkMAAUm1950.jpg");
-                        boxBeanList.add("http://sqdd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk");
-                        boxBeanList.add("http://down.sandai.net/thunder7/Thunder_dl_7.9.41.5020.exe");
-                        boxBeanList.add("http://182.254.149.157/ftp/image/shop/product/@#_% &.apk");
-                        boxBeanList.add("http://dx500.downyouxi.com/minglingyuzhengfu4.rar");
+                        boxBeanList.add(SPHelper.getCourseTable(getActivity()));//下载当前学期课表
                         FileDownloader.start(boxBeanList);
                     }
                 });
@@ -114,7 +127,7 @@ public class PersonFragment extends BaseFragment {
         mRLFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {//跳转到意见反馈
-
+                startActivity(new Intent(getActivity(), FeedbackActivity.class));
             }
         });
         mRLVersion.setOnClickListener(new View.OnClickListener() {
@@ -123,10 +136,61 @@ public class PersonFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), CopyrightActivity.class));
             }
         });
+
+        mBtnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
+            }
+        });
     }
 
     @Override
     protected void initPresenter() {
+        mPresenter = new PersonInfoPresenter(getActivity(), this);
+    }
 
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        mPresenter.getPersonInfo();
+        mPageStateLayout.onSucceed();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onSuccess(PersonInfo personInfo) {
+        mPersonInfo = personInfo;
+        //更新数据
+        ImageHandler.getAvater(getActivity(), mIvAvater, personInfo.photo);
+        mTvUserName.setText(personInfo.real_name);
+        mTvUserNumber.setText(personInfo.user_name);
+        if ("2".equals(personInfo.user_type)) {
+            mTvUserCareer.setVisibility(View.GONE);
+        } else {
+            mTvUserCareer.setText(personInfo.jobtitle);
+        }
+        if ("1".equals(personInfo.sex)) {//男
+            Drawable nav_up = getResources().getDrawable(R.drawable.icon_my_men);
+            nav_up.setBounds(0, 0, nav_up.getMinimumWidth(), nav_up.getMinimumHeight());
+            mTvUserName.setCompoundDrawables(null, null, nav_up, null);
+        } else {
+            Drawable nav_up = getResources().getDrawable(R.drawable.icon_my_woman);
+            nav_up.setBounds(0, 0, nav_up.getMinimumWidth(), nav_up.getMinimumHeight());
+            mTvUserName.setCompoundDrawables(null, null, nav_up, null);
+        }
+        mTvUserDeparment.setText(personInfo.depart_name);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBaseEvent(final PersonEvent event) {
+        mPersonInfo = event.data;
+        ImageHandler.getAvater(getActivity(), mIvAvater, mPersonInfo.photo);
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_cm_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="15dp">
+
+    <TextView
+        android:id="@+id/tv_month_view_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"/>
+
+    <com.onesoft.digitaledu.widget.calendar.custom.CustomGridView
+        android:id="@+id/gv_month_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen5"
+        android:background="@drawable/bg_fff_d8d8"
+        android:numColumns="7"
+        android:scrollbars="none"/>
+</LinearLayout>

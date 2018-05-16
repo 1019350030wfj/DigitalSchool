@@ -17,6 +17,7 @@ import com.onesoft.digitaledu.R;
 
 public class FileDownloadDialog extends Dialog {
 
+    private TextView mTxtFileTitle;
     private TextView mTxtFileName;
     private TextView mTxtFileSize;
     private TextView mTxtConfirm;
@@ -34,6 +35,7 @@ public class FileDownloadDialog extends Dialog {
         mlp.gravity = Gravity.CENTER;
         getWindow().setAttributes(mlp);
 
+        mTxtFileTitle = (TextView) findViewById(R.id.txt_title);
         mTxtFileName = (TextView) findViewById(R.id.txt_file_name);
         mTxtFileSize = (TextView) findViewById(R.id.txt_file_size);
         mTxtConfirm = (TextView) findViewById(R.id.txt_msg);
@@ -47,6 +49,12 @@ public class FileDownloadDialog extends Dialog {
                 }
             }
         });
+    }
+
+    public void setTextHint(String content) {
+        mTxtFileName.setVisibility(View.GONE);
+        mTxtFileSize.setVisibility(View.GONE);
+        mTxtFileTitle.setText(content);
     }
 
     private IFileDownload mListener;

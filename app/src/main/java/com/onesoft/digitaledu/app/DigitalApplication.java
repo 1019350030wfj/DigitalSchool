@@ -3,8 +3,10 @@ package com.onesoft.digitaledu.app;
 import android.app.Application;
 import android.os.Environment;
 
-import com.onesoft.digitaledu.utils.PathUtil;
+import com.onesoft.digitaledu.widget.face.FaceConversionUtil;
 import com.onesoft.netlibrary.utils.ImageHandler;
+import com.onesoft.netlibrary.utils.PathUtil;
+import com.squareup.leakcanary.LeakCanary;
 
 import org.wlf.filedownloader.FileDownloadConfiguration;
 import org.wlf.filedownloader.FileDownloader;
@@ -24,6 +26,21 @@ public class DigitalApplication extends Application {
         // init FileDownloader
         initFileDownloader();
         PathUtil.getInstance().initDir(this);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {//表情键盘
+                FaceConversionUtil.getInstace().getFileText(DigitalApplication.this);
+            }
+        }).start();
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+        // Normal app init code...
     }
 
     @Override

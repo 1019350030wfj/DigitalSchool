@@ -14,7 +14,10 @@ import com.onesoft.digitaledu.view.fragment.BaseFragment;
 import com.onesoft.digitaledu.view.iview.person.IDownloadedView;
 
 import org.wlf.filedownloader.DownloadFileInfo;
+import org.wlf.filedownloader.FileDownloader;
+import org.wlf.filedownloader.listener.OnDeleteDownloadFilesListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +46,7 @@ public class DownloadFileFragment extends BaseFragment<DownloadedPresenter> impl
 
     @Override
     protected void initPageState() {
-        View emptyView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_download_now_empty, null, false);
+        View emptyView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_downloaded_empty, null, false);
         mPageStateLayout.setEmptyView(emptyView);
     }
 
@@ -55,10 +58,24 @@ public class DownloadFileFragment extends BaseFragment<DownloadedPresenter> impl
     @Override
     protected void initData(Bundle savedInstanceState) {
         mAdapter = new DownloadedAdapter(getActivity());
+        mAdapter.setDownloadingListener(new DownloadedAdapter.OnDownloadedListener() {
+            @Override
+            public void onDelete() {
+                ((OfflineDownloadActivity) getActivity()).updateDeleteNum();
+            }
+        });
         mListView.setAdapter(mAdapter);
 
 //        mPresenter.getDownloadData();
-        mPageStateLayout.onSucceed();
+        showPageState();
+    }
+
+    public void showPageState() {
+        if (mAdapter.getDatas() != null && mAdapter.getDatas().size() > 0) {
+            mPageStateLayout.onSucceed();
+        } else {
+            mPageStateLayout.onEmpty();
+        }
     }
 
     @Override
@@ -68,7 +85,7 @@ public class DownloadFileFragment extends BaseFragment<DownloadedPresenter> impl
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 ((OfflineDownloadActivity) getActivity()).showDeleteMode();//长按是删除模式
                 setBoxAdapterDeleteMode(true);
-                ((OfflineDownloadActivity) getActivity()).updateDeleteNum("0");
+                ((OfflineDownloadActivity) getActivity()).updateDeleteNum();
                 return true;
             }
         });
@@ -76,6 +93,7 @@ public class DownloadFileFragment extends BaseFragment<DownloadedPresenter> impl
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             }
         });
     }
@@ -105,11 +123,48 @@ public class DownloadFileFragment extends BaseFragment<DownloadedPresenter> impl
 
     @Override
     public void onSuccess(List<DownloadBean> boxBeanList) {
-        mListView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mPageStateLayout.onSucceed();
+    }
+
+    public void updateShow() {
+        mAdapter.updateShow();
+        showPageState();
+    }
+
+    public void delete() {//删除
+        if (mIsDeleteMode) {//是删除模式才做删除操作
+            List<String> deleteUrls = new ArrayList<>();
+            for (DownloadFileInfo boxBean : mAdapter.getDatas()) {
+                if (boxBean.isDelete) {//需要删除的
+                    deleteUrls.add(boxBean.getUrl());
+                }
             }
-        }, 2000);
+            if (deleteUrls.size() > 0) {
+                FileDownloader.delete(deleteUrls, true, new OnDeleteDownloadFilesListener() {
+                    @Override
+                    public void onDeleteDownloadFilesPrepared(List<DownloadFileInfo> downloadFilesNeedDelete) {
+
+                    }
+
+                    @Override
+                    public void onDeletingDownloadFiles(List<DownloadFileInfo> downloadFilesNeedDelete, List<DownloadFileInfo> downloadFilesDeleted, List<DownloadFileInfo> downloadFilesSkip, DownloadFileInfo downloadFileDeleting) {
+
+                    }
+
+                    @Override
+                    public void onDeleteDownloadFilesCompleted(List<DownloadFileInfo> downloadFilesNeedDelete, List<DownloadFileInfo> downloadFilesDeleted) {
+                        updateShow();
+                        ((OfflineDownloadActivity) getActivity()).showDownloadedSize();
+                        ((OfflineDownloadActivity) getActivity()).updateDeleteNum();
+                    }
+                });
+            }
+        }
+    }
+
+    public List<DownloadFileInfo> getDatas() {
+        if (mAdapter != null) {
+            return mAdapter.getDatas();
+        }
+        return null;
     }
 }

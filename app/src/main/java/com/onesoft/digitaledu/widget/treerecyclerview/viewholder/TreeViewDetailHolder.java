@@ -1,5 +1,6 @@
 package com.onesoft.digitaledu.widget.treerecyclerview.viewholder;
 
+import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.onesoft.digitaledu.R;
 import com.onesoft.digitaledu.widget.treerecyclerview.model.TreeItem;
+import com.onesoft.netlibrary.utils.ImageHandler;
 
 public class TreeViewDetailHolder extends BaseViewHolder {
 
@@ -30,6 +32,7 @@ public class TreeViewDetailHolder extends BaseViewHolder {
         name.setText(itemData.name);
         title.setText(itemData.number);
         select.setSelected(itemData.isSelect);
+        ImageHandler.getAvater((Activity) relativeLayout.getContext(), avatar, itemData.imgUrl);
         relativeLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

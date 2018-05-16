@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dimen15"
+        android:gravity="center_vertical"
+        android:text="丁晋华"
+        android:textColor="@color/color_1A1A1A"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/img_select"
+        android:layout_width="@dimen/dimen25"
+        android:layout_height="@dimen/dimen25"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dimen15"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_delete_box"/>
+
+</RelativeLayout>

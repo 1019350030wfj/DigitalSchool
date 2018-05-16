@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_user_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_adduser"
+        android:drawablePadding="@dimen/dimen9"
+        android:paddingLeft="@dimen/dimen9"
+        android:paddingRight="@dimen/dimen9"
+        android:paddingTop="@dimen/dimen5"
+        android:text="@string/contact_add"
+        android:textColor="@color/color_666"
+        android:textSize="@dimen/size14"/>
+
+    <View
+        android:id="@+id/view1"
+        style="@style/DividerHorizontal1"
+        android:layout_marginTop="@dimen/dimen5"/>
+    <TextView
+        android:id="@+id/txt_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_search"
+        android:drawablePadding="@dimen/dimen9"
+        android:paddingBottom="@dimen/dimen5"
+        android:paddingLeft="@dimen/dimen9"
+        android:paddingRight="@dimen/dimen9"
+        android:paddingTop="@dimen/dimen5"
+        android:text="@string/search"
+        android:textColor="@color/color_666"
+        android:textSize="@dimen/size14"/>
+
+    <TextView
+        android:id="@+id/txt_add_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_group"
+        android:drawablePadding="@dimen/dimen9"
+        android:paddingBottom="@dimen/dimen5"
+        android:paddingLeft="@dimen/dimen9"
+        android:paddingRight="@dimen/dimen9"
+        android:paddingTop="@dimen/dimen5"
+        android:text="@string/add_group"
+        android:textColor="@color/color_666"
+        android:textSize="@dimen/size14"/>
+
+</LinearLayout>

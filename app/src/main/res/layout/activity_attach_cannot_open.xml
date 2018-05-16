@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_file_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="135dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxEms="9"
+        android:text="用户管理后台功能需求说明20161227.xlsx"
+        android:textColor="@color/color_1A1A1A"
+        android:textSize="@dimen/size18"
+    />
+
+    <TextView
+        android:id="@+id/txt_file_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen5"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:text="23MB"
+        android:textColor="@color/color_808080"
+        android:textSize="@dimen/size12"
+    />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:gravity="center"
+        android:text="@string/cannot_open_file"
+        android:textColor="@color/color_1A1A1A"
+        android:textSize="@dimen/size14"
+    />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_r16_23a0e5"
+        android:gravity="center"
+        android:text="@string/save"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/size16"/>
+</LinearLayout>

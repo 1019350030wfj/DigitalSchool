@@ -1,1 +1,1 @@
-include ':app', ':pagestate', ':netlibrary', ':FileDownloader'
+include ':app', ':pagestate', ':netlibrary', ':FileDownloader', ':GalleryPick', ':filepicker'

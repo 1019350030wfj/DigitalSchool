@@ -2,8 +2,6 @@ package com.onesoft.netlibrary.utils;
 
 import android.util.Log;
 
-import com.onesoft.netlibrary.BuildConfig;
-
 
 /**
  * Created by perbo on 2015-12-07.
@@ -12,7 +10,7 @@ public class LogUtil {
     /**
      * 是否处于调试模式
      */
-    public static volatile boolean IS_DEBUG = BuildConfig.DEBUG;
+    public static volatile boolean IS_DEBUG = true;
 
     private static String TAG = "jayden";
 

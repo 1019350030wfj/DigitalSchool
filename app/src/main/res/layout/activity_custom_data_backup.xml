@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f2f2f2">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f2f2f2"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15">
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:cacheColorHint="#0000"
+            android:divider="#ebebeb"
+            android:dividerHeight="0.5dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="none"/>
+
+        <Button
+            android:id="@+id/btn_send_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen15"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_r16_23a0e5"
+            android:gravity="center"
+            android:paddingBottom="12dp"
+            android:paddingTop="12dp"
+            android:text="@string/batch_data_backup"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/size16"
+        />
+
+
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_up"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/btn_up_nor"
+        android:visibility="invisible"/>
+</FrameLayout>

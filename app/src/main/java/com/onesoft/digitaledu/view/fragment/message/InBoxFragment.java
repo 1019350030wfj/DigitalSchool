@@ -3,23 +3,36 @@ package com.onesoft.digitaledu.view.fragment.message;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.onesoft.digitaledu.R;
+import com.onesoft.digitaledu.model.BaseEvent;
 import com.onesoft.digitaledu.model.BoxBean;
-import com.onesoft.digitaledu.view.iview.message.IInBoxView;
+import com.onesoft.digitaledu.model.net.HttpUrl;
 import com.onesoft.digitaledu.presenter.message.InBoxPresenter;
+import com.onesoft.digitaledu.view.activity.message.MessageDetailActivity;
 import com.onesoft.digitaledu.view.fragment.BaseFragment;
+import com.onesoft.digitaledu.view.iview.message.IInBoxView;
+import com.onesoft.digitaledu.widget.ptr.PtrListView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
 /**
+ * mListView.stopRefresh();
+ * mListView.stopLoadMore();
+ * mListView.setLoadMoreEnable(false);
+ * mListView.setOnRefreshListener(this);
+ * mListView.setOnLoadMoreListener(this);
+ * mListView.refresh();
  * Created by Jayden on 2016/11/5.
  */
 
-public class InBoxFragment extends BaseFragment<InBoxPresenter> implements IInBoxView {
+public class InBoxFragment extends BaseFragment<InBoxPresenter> implements PtrListView.OnRefreshListener, PtrListView.OnLoadMoreListener, IInBoxView {
 
-    private ListView mListView;
+    private PtrListView mListView;
     private BoxAdapter mBoxAdapter;
 
     public static InBoxFragment newInstance(String s) {
@@ -38,41 +51,61 @@ public class InBoxFragment extends BaseFragment<InBoxPresenter> implements IInBo
 
     @Override
     public void initView(View view) {
-        mListView = (ListView) view.findViewById(R.id.listview);
+        mListView = (PtrListView) view.findViewById(R.id.listview);
     }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
         mBoxAdapter = new BoxAdapter(getActivity());
+        mBoxAdapter.setOnDeletedListener(new BoxAdapter.OnDeletedListener() {
+            @Override
+            public void onDelete() {
+                ((MessageFragment) getParentFragment()).updateDeleteNum();
+            }
+        });
         mListView.setAdapter(mBoxAdapter);
-        mPresenter.getInBoxData();
+        mListView.refresh();
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void initListener() {
+        mListView.setOnRefreshListener(this);
+        mListView.setOnLoadMoreListener(this);
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                ((MessageFragment) getParentFragment()).showDeleteMode();//长按是删除模式
-                setBoxAdapterDeleteMode(true);
-                ((MessageFragment) getParentFragment()).updateDeleteNum("0");
+                ((MessageFragment) getParentFragment()).handleDelete();//长按是删除模式
                 return true;
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BoxBean boxBean = mBoxAdapter.getItem(position);
+                if ("0".equals(boxBean.is_read)) {//更新为已读
+                    boxBean.is_read = "1";
+                    mBoxAdapter.notifyDataSetChanged();
+                }
+                MessageDetailActivity.startMessageDetail(getActivity(), boxBean);
             }
         });
     }
 
     private boolean mIsDeleteMode;
+
     public void setBoxAdapterDeleteMode(boolean isDeleteMode) {
         mIsDeleteMode = isDeleteMode;
         mBoxAdapter.setISDeleteMode(isDeleteMode);
     }
 
     public void setSelectAll(boolean isSelectAll) {//全选
-        if (mIsDeleteMode){
-           for (BoxBean boxBean :  mBoxAdapter.getDatas()){
-               boxBean.isDelete = isSelectAll;
-               mBoxAdapter.notifyDataSetChanged();
-           }
+        if (mIsDeleteMode) {
+            for (BoxBean boxBean : mBoxAdapter.getDatas()) {
+                boxBean.isDelete = isSelectAll;
+            }
+            mBoxAdapter.notifyDataSetChanged();
         }
     }
 
@@ -83,6 +116,87 @@ public class InBoxFragment extends BaseFragment<InBoxPresenter> implements IInBo
 
     @Override
     public void onSuccess(List<BoxBean> boxBeanList) {
-        mBoxAdapter.setDatas(boxBeanList);
+        mListView.stopRefresh();
+        mListView.stopLoadMore();
+        if (page == 1) {//这边要通过返回的条数，和限制每一页返回的条数，大小来判断是否还可以加载更多
+            if (boxBeanList != null && boxBeanList.size() > 0) {
+                mBoxAdapter.setDatas(boxBeanList);
+                mPageStateLayout.onSucceed();
+            } else {
+                mPageStateLayout.onEmpty();
+            }
+        } else {
+            mBoxAdapter.addData(boxBeanList);
+        }
+        if (boxBeanList != null && boxBeanList.size() > 0) {
+            if (boxBeanList.size() == HttpUrl.PAGE_SIZE) {
+                mListView.setLoadMoreEnable(true);
+            } else {
+                mListView.setLoadMoreEnable(false);
+            }
+        } else {
+            mListView.setLoadMoreEnable(false);
+        }
+    }
+
+    @Override
+    public void onError(String error) {
+        mListView.stopRefresh();
+        mListView.stopLoadMore();
+    }
+
+    @Override
+    public void onDelSuccess() {
+        onRefresh();
+    }
+
+    private int page = 1;
+
+    @Override
+    public void onLoadMore() {
+        page++;
+        mPresenter.getInBoxData(page);
+    }
+
+    @Override
+    public void onRefresh() {
+        page = 1;
+        mPresenter.getInBoxData(page);
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 使用事件总线监听回调
+     *
+     * @param event
+     */
+    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBaseEvent(final BaseEvent event) {
+        switch (event.type) {
+            case BaseEvent.UPDATE_IN_BOX: {//删除收件箱
+                onRefresh();//刷新收件箱列表
+                break;
+            }
+        }
+    }
+
+    public List<BoxBean> getDatas(){
+        if (mBoxAdapter != null){
+            return mBoxAdapter.getDatas();
+        }
+        return null;
+    }
+
+    public void delete() {
+        if (mIsDeleteMode) {//是删除模式才做删除操作
+           mPresenter.deleteBatch(mBoxAdapter.getDatas());
+        }
     }
 }

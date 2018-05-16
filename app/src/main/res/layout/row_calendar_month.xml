@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.onesoft.digitaledu.widget.FixWHRatioTextView
+        android:id="@+id/row_cm_tv_week_day_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="#1a1a1a"
+        android:textSize="10sp"/>
+</RelativeLayout>

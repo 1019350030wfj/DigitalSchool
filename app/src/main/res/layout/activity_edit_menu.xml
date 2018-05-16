@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f2f2f2"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dimen15"
+>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/send_message_title"
+            android:text="@string/menu_name"/>
+        <EditText
+            android:id="@+id/edit_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="@dimen/dimen15"
+            android:background="@null"
+            android:hint="@string/menu_name"
+            android:paddingTop="@dimen/dimen15"
+            android:textColor="@color/color_808080"
+            android:textSize="@dimen/size16"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"/>
+    <RelativeLayout
+        android:id="@+id/rl_menu_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/send_message_title"
+            android:text="@string/menu_up"/>
+        <TextView
+            android:id="@+id/txt_menu_up"
+            style="@style/send_message_title_right"
+            android:text="@string/menu_up"/>
+        <ImageView
+            android:id="@+id/img_menu_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@drawable/icon_next_nor"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"/>
+    <RelativeLayout
+        android:id="@+id/rl_is_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/send_message_title"
+            android:text="@string/is_show"/>
+        <TextView
+            android:id="@+id/txt_is_show"
+            style="@style/send_message_title_right"
+            android:text="@string/is_show"/>
+        <ImageView
+            android:id="@+id/img_is_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@drawable/icon_next_nor"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            style="@style/send_message_title"
+            android:text="@string/menu_order"/>
+        <TextView
+            android:id="@+id/txt_menu_order"
+            style="@style/send_message_title_right"
+            android:text="@string/menu_order"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/color_ebebeb"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minHeight="150dp">
+
+        <EditText
+            android:id="@+id/edit_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen15"
+            android:background="@null"
+            android:hint="@string/hint_content_menu"
+            android:paddingTop="@dimen/dimen15"
+            android:textColor="@color/color_808080"
+            android:textSize="@dimen/size16"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

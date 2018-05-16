@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/shape_r16_fff"
+                  android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/rl_album"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+        >
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_annex_openfile"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_toRightOf="@id/avatar"
+                android:gravity="center_vertical"
+                android:text="@string/open1"
+                android:textColor="@color/color_1A1A1A"
+                android:textSize="@dimen/size16"/>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_ebebeb"/>
+        <RelativeLayout
+            android:id="@+id/rl_shot"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+        >
+
+            <ImageView
+                android:id="@+id/avatar1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_annex_forward"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_toRightOf="@id/avatar1"
+                android:gravity="center_vertical"
+                android:text="@string/forward"
+                android:textColor="@color/color_1A1A1A"
+                android:textSize="@dimen/size16"/>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/color_ebebeb"/>
+        <RelativeLayout
+            android:id="@+id/rl_file"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+        >
+
+            <ImageView
+                android:id="@+id/avatar2"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_annex_save"/>
+
+            <TextView
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_toRightOf="@id/avatar2"
+                android:gravity="center_vertical"
+                android:text="@string/save"
+                android:textColor="@color/color_1A1A1A"
+                android:textSize="@dimen/size16"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/shape_r16_fff"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textColor="@color/color_1A1A1A"
+        android:textSize="@dimen/size16"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@android:color/transparent"/>
+</LinearLayout>

@@ -12,4 +12,8 @@ import java.util.List;
 public interface IInBoxView extends IBaseView {
 
     void onSuccess(List<BoxBean> boxBeanList);
+
+    void onError(String error);
+
+    void onDelSuccess();
 }

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f2f2f2"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/personal_bg_default_00"/>
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dimen10"
+                    android:layout_marginTop="60dp"
+                    android:gravity="center"
+                    android:text="@string/administrator"
+                    android:textColor="@color/color_1A1A1A"
+                    android:textSize="21sp"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="53dp"
+                android:layout_height="48dp"
+                android:scaleType="center"
+                android:src="@drawable/nav_btn_back_nor"/>
+
+            <com.onesoft.digitaledu.widget.CircleImageView
+                android:id="@+id/iv_avater"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/icon_default_avatar"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="1dp"/>
+        </FrameLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/teacher_no2"/>
+            <TextView
+                android:id="@+id/edit_number"
+                style="@style/person_info_title1"
+                android:text="administrator"/>
+
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/office_phonenumber"/>
+            <TextView
+                android:id="@+id/edit_position"
+                style="@style/person_info_title1"
+                android:text="0592-1101101"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/mobile_phone"/>
+            <TextView
+                android:id="@+id/edit_departmentn"
+                style="@style/person_info_title1"
+                android:text="1398526410"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/str_qq"/>
+            <TextView
+                android:id="@+id/edit_place_of_origin"
+                style="@style/person_info_title1"
+                android:text="1019350030"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/person_info_title"
+                android:text="@string/place"/>
+            <TextView
+                android:id="@+id/edit_nation"
+                style="@style/person_info_title1"
+                android:text="福建省厦门市软件园二期"/>
+        </RelativeLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <Button
+            android:id="@+id/btn_sendMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen20"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:background="@drawable/shape_r6_fff"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen10"
+            android:text="@string/delete"
+            android:textColor="@color/color_BBBBBB"
+            android:textSize="@dimen/size16"/>
+    </LinearLayout>
+</ScrollView>

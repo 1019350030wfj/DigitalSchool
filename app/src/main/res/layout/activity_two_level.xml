@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ll_two_level"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="horizontal">
@@ -7,10 +8,11 @@
     <ListView
         android:id="@+id/listview"
         android:layout_width="0dp"
-        android:layout_weight="0.25"
         android:layout_height="match_parent"
-        android:cacheColorHint="@color/color_e5e5e5"
-        android:divider="@android:color/transparent"
+        android:layout_weight="0.25"
+        android:background="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@color/color_e5e5e5"
         android:dividerHeight="@dimen/both_sides_distance"
         android:scrollbars="none"/>
 
@@ -19,23 +21,24 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.75"
-        android:background="@color/color_f2f2f2"
+        android:background="@android:color/transparent"
         android:scrollbars="none">
         <LinearLayout
-            android:id="@+id/ll_two_level"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:orientation="vertical">
             <com.onesoft.digitaledu.widget.FixGridView
                 android:id="@+id/gridView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dimen35"
-                android:paddingRight="@dimen/dimen23"
-                android:paddingLeft="@dimen/dimen20"
                 android:fadeScrollbars="true"
                 android:listSelector="@android:color/transparent"
+                android:background="@android:color/transparent"
                 android:numColumns="3"
+                android:paddingLeft="@dimen/dimen10"
+                android:paddingRight="@dimen/dimen10"
+                android:paddingTop="@dimen/dimen35"
                 android:scrollbars="none"
                 android:stretchMode="columnWidth"/>
         </LinearLayout>

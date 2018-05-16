@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:background="@android:color/white">
+
+            <TextView
+                style="@style/weekName"
+                android:text="日"/>
+
+            <TextView
+                style="@style/weekName"
+                android:text="一"/>
+
+            <TextView
+                style="@style/weekName"
+                android:text="二"/>
+
+            <TextView
+                style="@style/weekName"
+                android:text="三"/>
+
+            <TextView
+                style="@style/weekName"
+                android:text="四"/>
+
+            <TextView
+                style="@style/weekName"
+                android:text="五"/>
+
+            <TextView
+                style="@style/weekName"
+                android:text="六"/>
+        </LinearLayout>
+
+        <View
+            style="@style/DividerHorizontal1"/>
+
+        <com.onesoft.digitaledu.widget.calendar.ScrollableLayout
+            android:id="@+id/scrollableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#cdcdcd">
+                <com.onesoft.digitaledu.widget.calendar.MyGridView
+                    android:id="@+id/gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:clickable="true"
+                    android:clipChildren="true"
+                    android:columnWidth="55.0dip"
+                    android:listSelector="@null"
+                    android:numColumns="7"
+                    android:stretchMode="columnWidth"
+                />
+
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/main_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_f2f2f2"
+                android:cacheColorHint="#0000"
+                android:divider="#ebebeb"
+                android:dividerHeight="0.5dp"
+                android:listSelector="@android:color/transparent"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="none"
+
+            />
+
+            <TextView
+            android:id="@+id/txt_no_agenda"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dimen25"
+            android:text="无日程"
+            android:textColor="@color/color_969696"
+            android:textSize="@dimen/size14"
+            android:visibility="gone"/>
+
+        </com.onesoft.digitaledu.widget.calendar.ScrollableLayout>
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_add"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="23dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/bg_btn_calendar_add"/>
+
+</FrameLayout>

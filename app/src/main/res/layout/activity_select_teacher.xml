@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f2f2f2">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f2f2f2"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen10">
+
+        <include layout="@layout/layout_search_header"/>
+
+        <com.onesoft.digitaledu.widget.ptr.PtrListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dimen10"
+            android:layout_weight="1"
+            android:cacheColorHint="#0000"
+            android:divider="#f2f2f2"
+            android:dividerHeight="0.5dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="none"
+        />
+
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_up"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/btn_up_margin_bottom"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/btn_up_nor"
+        android:visibility="invisible"/>
+</FrameLayout>

@@ -214,6 +214,7 @@ public class PageStateLayout extends FrameLayout implements PageStateListener {
 
     /**
      * do something when click the empty image
+     *
      * @param onEmptyListener
      * @return
      */
@@ -228,6 +229,7 @@ public class PageStateLayout extends FrameLayout implements PageStateListener {
 
     /**
      * do something when click the error image
+     *
      * @param onErrorListener
      * @return
      */
@@ -273,6 +275,7 @@ public class PageStateLayout extends FrameLayout implements PageStateListener {
 
     /**
      * Load the succeedView defined by user without containers
+     *
      * @param succeedView
      */
     public void load(@NonNull View succeedView) {
@@ -303,6 +306,7 @@ public class PageStateLayout extends FrameLayout implements PageStateListener {
 
         /**
          * Set your loadingView
+         *
          * @param resId
          * @return
          */

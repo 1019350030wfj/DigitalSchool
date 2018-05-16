@@ -8,14 +8,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.onesoft.digitaledu.R;
+import com.onesoft.netlibrary.utils.FileUtils;
 import com.onesoft.netlibrary.utils.ImageHandler;
 
 import org.wlf.filedownloader.DownloadFileInfo;
 import org.wlf.filedownloader.FileDownloader;
 import org.wlf.filedownloader.base.Status;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +39,15 @@ public class DownloadedAdapter extends BaseAdapter {
         this.mContext = context;
         mISDeleteMode = false;
         getDownloadedFiles();
+    }
+
+    /**
+     * update show
+     */
+    public void updateShow() {
+        mDownloadFileInfos.clear();
+        getDownloadedFiles();
+        notifyDataSetChanged();
     }
 
     private void getDownloadedFiles() {
@@ -107,7 +119,7 @@ public class DownloadedAdapter extends BaseAdapter {
             viewHolder.mImgDelete.setVisibility(View.INVISIBLE);
         }
 
-        ImageHandler.getImage((Activity) mContext, viewHolder.mImgAvater,"", R.drawable.icon_my_li);
+        ImageHandler.getImage((Activity) mContext, viewHolder.mImgAvater, "", R.drawable.icon_my_li);
         viewHolder.mTxtName.setText(boxBean.getFileName());
         double fileSize = boxBean.getFileSizeLong() / 1024f / 1024;
 
@@ -118,7 +130,22 @@ public class DownloadedAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (mISDeleteMode) {//删除模式
                     boxBean.isDelete = !boxBean.isDelete;
+                    if (mCompleteListener != null) {
+                        mCompleteListener.onDelete();
+                    }
                     notifyDataSetChanged();
+                }
+            }
+        });
+
+        viewHolder.mImgLook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//打开文件
+                try {
+                    FileUtils.openFile(new File(boxBean.getFilePath()), (Activity) mContext);
+                } catch (Exception e) {
+                    Toast.makeText(mContext, "无法打开此文件", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
             }
         });
@@ -129,7 +156,6 @@ public class DownloadedAdapter extends BaseAdapter {
         return mDownloadFileInfos;
     }
 
-
     static class ViewHolder {
         View mView;
         TextView mTxtName;
@@ -138,5 +164,16 @@ public class DownloadedAdapter extends BaseAdapter {
         ImageView mImgAvater;
         ImageView mImgLook;
         View mImgDelete;
+    }
+
+
+    private OnDownloadedListener mCompleteListener;
+
+    public void setDownloadingListener(OnDownloadedListener listener) {
+        this.mCompleteListener = listener;
+    }
+
+    public interface OnDownloadedListener {
+        void onDelete();
     }
 }

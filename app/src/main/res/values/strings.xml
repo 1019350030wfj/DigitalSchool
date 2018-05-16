@@ -6,7 +6,14 @@
     <string name="cloud">云平台</string>
     <string name="person">我的</string>
     <string name="inbox">收件箱</string>
+    <string name="loading">Loading...</string>
     <string name="sendingbox">发件箱</string>
+    <string name="system_contact">系统通讯录</string>
+    <string name="contact">通讯录</string>
+    <string name="person_contact">个人通讯录</string>
+    <string name="group_manager">群组管理</string>
+    <string name="document_inbox">公文收件箱</string>
+    <string name="document_sending_box">公文发件箱</string>
     <string name="download_now">正在下载</string>
     <string name="no_download_now">没有正在下载的任务</string>
     <string name="no_download_now1">在已下载中可以找到已完成的文件</string>
@@ -14,27 +21,53 @@
     <string name="no_download_already">没有已下载的任务</string>
     <string name="no_download_already1">请先下载</string>
     <string name="all_select">全选</string>
+    <string name="all_day">全天</string>
+    <string name="today">今天</string>
+    <string name="calendar_notepad">记事日历</string>
+    <string name="attendance_look">考勤查询</string>
     <string name="default_bg">默认背景</string>
     <string name="album_select">相册选择</string>
+    <string name="album">相册</string>
+    <string name="shot">拍摄</string>
     <string name="cancel">取消</string>
     <string name="cancel_all_select">取消全选</string>
     <string name="delete">删除</string>
+    <string name="is_delete">是否删除？</string>
+    <string name="is_delete_agenda">此日程将会被删除!</string>
     <string name="already_select_delete">已选择 %1$s 封</string>
+    <string name="already_select_delete1">已选择 %1$s 条</string>
     <string name="send_message">发送消息</string>
+    <string name="send_message_mass">群发消息</string>
+    <string name="user_add">添加用户</string>
+    <string name="contact_add">添加记录</string>
+    <string name="department_add">添加部门</string>
+    <string name="department_add_info">添加部门信息</string>
+    <string name="department_name">部门名称</string>
     <string name="message_detail">信息详情</string>
     <string name="batch_delete">批量删除</string>
+    <string name="is_receipt">是否回执</string>
     <string name="type">类型</string>
+    <string name="no">号码</string>
+    <string name="add_time">增加时间</string>
+    <string name="number_type">号码类型</string>
     <string name="type_select">类型选择</string>
     <string name="file_download">文件下载</string>
+    <string name="file_download_to_list">文件将加入下载列表？</string>
     <string name="confirm_download">确认下载</string>
     <string name="notice">通知</string>
+    <string name="prompt">提示</string>
     <string name="title">标题</string>
     <string name="reply">回复</string>
+    <string name="reply_msg">回复消息</string>
     <string name="content">内容</string>
     <string name="send">发送</string>
+    <string name="batch_data_backup">批量备份数据表</string>
     <string name="change_avatar">更换头像</string>
     <string name="confirm">确定</string>
     <string name="select_recipient">选择收件人</string>
+    <string name="select_role">选择角色</string>
+    <string name="select_member">选择成员</string>
+    <string name="select_subordinate_member">选择下属成员</string>
     <string name="recipient">收件人</string>
     <string name="send_person">发件人</string>
     <string name="copyright_renewal">版权更新</string>
@@ -43,11 +76,17 @@
     <string name="official_site">官方网站</string>
     <string name="email_address">邮箱地址</string>
     <string name="person_info">个人信息</string>
+    <string name="file">文件</string>
+    <string name="forward">转发</string>
+    <string name="save">保存</string>
+    <string name="save_success">保存成功</string>
+    <string name="save_to_album">保存至相册</string>
     <string name="file_size">文件大小 ：12.83M</string>
     <string name="semester_course_schedule">学期课程表</string>
     <string name="cur_semester_course_schedule">当前学期课程表</string>
     <string name="send_time">发件时间</string>
     <string name="offline_download">下载离线</string>
+    <string name="document_send_receive">公文收发</string>
     <string name="modify_pwd">修改密码</string>
     <string name="modify_pwd_hint">为了保证您的数据安全，修改密码前请先填写当前密码</string>
     <string name="current_pwd">当前密码</string>
@@ -57,33 +96,123 @@
     <string name="confirm_pwd">确定密码</string>
     <string name="confirm_pwd_hint">输入与新设密码一样</string>
     <string name="wallpaper_setting">壁纸设置</string>
+    <string name="user_manager">用户管理</string>
     <string name="feedback">意见反馈</string>
     <string name="str_default">默认</string>
     <string name="str_exit_account">退出账号</string>
     <string name="version_update">版本更新</string>
     <string name="hint_title">输入标题不超过12个字</string>
-    <string name="hint_content">输入content不超过120个字</string>
+    <string name="hint_content">输入内容不超过120个字</string>
+    <string name="hint_content_menu">填写简单描述备注不超过100个字</string>
     <string name="administrator">超级管理员</string>
     <string name="edit">编辑</string>
+    <string name="remark">备注</string>
+    <string name="remark_info">备注信息</string>
     <string name="study_number">学号</string>
     <string name="sex">性别</string>
+    <string name="department_parent">上级部门</string>
+    <string name="department_parent_hint">请选择上级部门名称</string>
+    <string name="distribution_way">分配方式</string>
     <string name="man">男</string>
     <string name="woman">女</string>
     <string name="position">职称</string>
     <string name="department">院系</string>
+    <string name="colleage">部门</string>
+    <string name="school">学校</string>
+    <string name="schedule_category">日程类别</string>
+    <string name="from_time">时间从</string>
+    <string name="to_time">到</string>
+    <string name="schedule_delete">此日程将会被删除！</string>
+    <string name="work">工作</string>
+    <string name="house">家</string>
+    <string name="department_list">部门列表</string>
     <string name="place_of_origin">籍贯</string>
     <string name="nation">民族</string>
+    <string name="remind">提醒</string>
+    <string name="nation_hint">汉族</string>
     <string name="blood_type">血型</string>
     <string name="birthday">出生日期</string>
+    <string name="allow_recursion">允许递归</string>
+    <string name="yes">是</string>
+    <string name="not">否</string>
+    <string name="birthday_year">出生年月</string>
     <string name="idcard">身份证号</string>
     <string name="phone_number">手机号码</string>
+    <string name="office_phonenumber">办公电话</string>
+    <string name="cellphone">手机</string>
+    <string name="telephone">电话</string>
+    <string name="mobile_phone">移动电话</string>
+    <string name="str_qq">QQ号</string>
     <string name="place">家庭地址</string>
     <string name="email">个人邮箱</string>
     <string name="motto">座右铭</string>
     <string name="hobby">爱好</string>
     <string name="specialty">特长</string>
     <string name="finish">完成</string>
+    <string name="feedback_hint">说点什么吧...</string>
+    <string name="shrink">缩起</string>
+    <string name="cannot_open_file">无打开此文件程序</string>
+    <string name="open">展开</string>
+    <string name="open1">打开</string>
+    <string name="number">编号</string>
+    <string name="menu_name">菜单名称</string>
+    <string name="menu_edit">菜单编辑</string>
+    <string name="user_edit_pwd">用户编辑-修改密码</string>
+    <string name="menu_parent">父级菜单</string>
+    <string name="menu_up">上级菜单</string>
+    <string name="menu_image">菜单图片</string>
+    <string name="is_show">是否显示</string>
+    <string name="show_yes">显示</string>
+    <string name="show_no">不显示</string>
+    <string name="operator">操作</string>
+    <string name="menu_list">菜单列表</string>
+    <string name="user_list">用户列表</string>
+    <string name="menu_order">菜单排序</string>
+    <string name="submit">提交</string>
+    <string name="search">搜索</string>
+    <string name="search_hint">请输入要查找的%s</string>
+    <string name="add_group">增加群组</string>
+    <string name="add_group_hint">请输入新增群组名称</string>
+    <string name="user_type">用户类型</string>
+    <string name="teacher_list">教师列表</string>
+    <string name="add_agenda">添加日程</string>
+    <string name="look_agenda">查看日程</string>
+    <string name="look_attendance">查看考勤</string>
+    <string name="edit_agenda">编辑日程</string>
+    <string name="add_subordinate_relation">添加下属关系</string>
+    <string name="subordinate_member">下属成员</string>
+    <string name="subordinate_member_hint">请选择成员</string>
+    <string name="teacher_name">教师姓名</string>
+    <string name="name">姓名</string>
+    <string name="all">所有</string>
+    <string name="student">学生</string>
+    <string name="teacher">教师</string>
+    <string name="faculty">所属院系</string>
+    <string name="teacher_no">教工号</string>
+    <string name="teacher_no1">教师号</string>
+    <string name="teacher_no2">教师工号</string>
+    <string name="title_title">职称头衔</string>
+    <string name="department_work">部门职责</string>
+    <string name="login_name">登录用户名</string>
+    <string name="password">密码</string>
+    <string name="user_role">用户角色</string>
+    <string name="need_write">必填</string>
+    <string name="menu_name_hint">网址推荐</string>
+    <string name="idcard_hint">请输入身份证号码</string>
+    <string name="birthday_hint">请输入出生年月</string>
+    <string name="need_select">必选</string>
+    <string name="operation_btn">操作按钮</string>
+    <string name="operation_btn_edit">操作按钮编辑</string>
+    <string name="operation_btn_select">操作按钮选择</string>
+    <string name="permission_operation_btn">权限-操作按钮管理</string>
+    <string name="max_count">已达到最高选择数量</string>
 
+    <string name="attach">附件</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
 
     <string name="main__can_not_download">无法下载，请删除后重新下载</string>
     <string name="main__getting_resource">正在获取资源</string>
@@ -108,4 +237,64 @@
     <string name="main__http_bad_response_code">(Http 返回错误)</string>
     <string name="main__http_file_not_exist">(Http请求文件不存在)</string>
     <string name="main__save_file_not_exist">(保存文件不存在)</string>
+
+
+    <!-- jayden add the picture is not found the corresponding model-->
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_GET_ACCOUNTS
+    </string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_PHONE_STATE
+    </string>
+    <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CALL_PHONE</string>
+    <string name="permission_camera_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CAMERA</string>
+    <string name="permission_access_fine_location_hint">
+        没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_FINE_LOCATION
+    </string>
+    <string name="permission_access_coarse_location_hint">
+        没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_COARSE_LOCATION
+    </string>
+    <string name="permission_read_external_hint">
+        没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_EXTERNAL_STORAGE
+    </string>
+    <string name="permission_white_external_hint">
+        没有此权限，无法开启这个功能，请开启权限。PERMISSION_WRITE_EXTERNAL_STORAGE
+    </string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_RECORD_AUDIO
+    </string>
+
+    <string name="main__whether_re_download">File not exist,whether re-download</string>
+
+    <!-- 校区管理 添加 -->
+    <string name="campus_add">添加校区</string>
+    <string name="campus_number">校区编号</string>
+    <string name="campus_name">校区名称</string>
+    <string name="fixed_telephone">固定电话</string>
+    <string name="fax">传真</string>
+    <string name="address">地址</string>
+    <string name="state">状态</string>
+    <string name="event_title">事件标题</string>
+    <string name="site_url">网站链接</string>
+    <string name="urban_district">城市区域</string>
+    <string name="area_covered">占地面积</string>
+    <string name="building_area">建筑面积</string>
+    <string name="square_meter">平米</string>
+    <string name="total_student">学生人数</string>
+    <string name="district_responsible_person">校区负责人</string>
+    <string name="campus_principal">分校校长</string>
+    <string name="campus_principal_one">分校校长一</string>
+    <string name="campus_principal_two">分校校长二</string>
+    <string name="campus_principal_three">分校校长三</string>
+    <!-- 校区管理 添加 -->
+    <!-- 公告管理 添加 -->
+    <string name="annouce_name">公告名称</string>
+    <string name="object_type">对象类型</string>
+    <string name="announced_content">公告内容</string>
+    <!-- 公告管理 添加 -->
+    <!-- 建筑物管理 添加 1：教学  2：实训  3：宿舍  4：食堂  5：办公  6：综合-->
+    <string name="teaching">教学</string>
+    <string name="prictice">实训</string>
+    <string name="domitory">宿舍</string>
+    <string name="canteen">食堂</string>
+    <string name="office">办公</string>
+    <string name="comprehensive">综合</string>
+    <!-- 建筑物管理 添加 -->
 </resources>

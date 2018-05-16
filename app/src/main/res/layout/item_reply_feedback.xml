@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_f5f5f5"
+    android:orientation="vertical"
+    android:paddingTop="10dp">
+
+    <RelativeLayout
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="36dp">
+
+        <com.onesoft.digitaledu.widget.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:scaleType="centerCrop"
+        />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/image"
+            android:gravity="center_vertical"
+            android:textColor="@color/color_3f3f3f"
+            android:textSize="@dimen/size16"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:textColor="@color/color_bababa"
+            android:textSize="@dimen/size12"/>
+    </RelativeLayout>
+
+    <com.onesoft.digitaledu.widget.EmoticonsTextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="15dp"
+        android:paddingBottom="@dimen/dimen15"
+        android:layout_marginLeft="47dp"
+        android:layout_marginTop="2dp"
+        android:gravity="left"
+        android:textColor="@color/color_737373"
+        android:textSize="@dimen/size14"/>
+
+    <View
+    style="@style/DividerHorizontal1"/>
+</LinearLayout>

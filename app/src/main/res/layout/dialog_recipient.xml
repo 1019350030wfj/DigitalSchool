@@ -29,13 +29,12 @@
         android:layout_marginTop="@dimen/dimen5"
     >
 
-        <ImageView
+        <com.onesoft.digitaledu.widget.CircleImageView
             android:id="@+id/avatar"
             android:layout_width="@dimen/dimen45"
             android:layout_height="@dimen/dimen45"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dimen20"
-            android:scaleType="fitXY"
             android:src="@drawable/icon_default_avatar"/>
 
         <TextView

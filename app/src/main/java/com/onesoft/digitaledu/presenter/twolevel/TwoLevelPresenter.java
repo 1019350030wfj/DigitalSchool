@@ -1,14 +1,16 @@
 package com.onesoft.digitaledu.presenter.twolevel;
 
 import android.content.Context;
+import android.text.TextUtils;
 
+import com.onesoft.digitaledu.model.BaseListBean;
 import com.onesoft.digitaledu.model.TopDirectory;
-import com.onesoft.digitaledu.model.TwoLevelTitle;
+import com.onesoft.digitaledu.model.net.HttpUrl;
 import com.onesoft.digitaledu.presenter.BasePresenter;
 import com.onesoft.digitaledu.view.iview.twolevel.ITwoLevelView;
+import com.onesoft.netlibrary.model.HttpHandler;
 
-import java.util.ArrayList;
-import java.util.List;
+import okhttp3.Request;
 
 /**
  * Created by Jayden on 2016/10/29.
@@ -20,25 +22,19 @@ public class TwoLevelPresenter extends BasePresenter<ITwoLevelView> {
         super(context, iView);
     }
 
-    public void getTwoLevelTitle(String id) {
-        List<TwoLevelTitle> twoLevelTitles = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            TwoLevelTitle twoLevelTitle = new TwoLevelTitle();
-            twoLevelTitle.id = String.valueOf(i);
-            twoLevelTitle.name = "系统数据 "+i;
-
-            twoLevelTitle.mDirectories = new ArrayList<>();
-            for (int j = 0; j < 10; j++) {
-                TopDirectory topDirectory = new TopDirectory();
-                topDirectory.id = String.valueOf(i);
-                topDirectory.name = "权限管理" + i + j;
-//            topDirectory.imgUrl = "http://pic.wenwen.soso.com/p/20110703/20110703195140-577514640.jpg";
-                topDirectory.imgUrl = "";
-                twoLevelTitle.mDirectories.add(topDirectory);
+    public void getTwoLevelTitle(final String id) {
+        String url = HttpUrl.TWO_LEVEL_MENU + id;
+        HttpHandler.getInstance(mContext).getAsync(mContext, url,  new HttpHandler.ResultCallback<BaseListBean<TopDirectory>>() {
+            @Override
+            public void onError(Request request, Exception e) {
             }
 
-            twoLevelTitles.add(twoLevelTitle);
-        }
-        iView.onGetTwoLevel(twoLevelTitles);
+            @Override
+            public void onResponse(BaseListBean<TopDirectory> response) {
+                if (response != null && TextUtils.equals(HttpUrl.CODE_SUCCESS, response.statue)) {
+                    iView.onGetTwoLevel(id,response.info);
+                }
+            }
+        });
     }
 }

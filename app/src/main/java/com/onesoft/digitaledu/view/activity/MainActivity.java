@@ -1,7 +1,7 @@
 package com.onesoft.digitaledu.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -9,10 +9,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.onesoft.digitaledu.R;
+import com.onesoft.digitaledu.model.BaseEvent;
+import com.onesoft.digitaledu.view.activity.person.PersonInfoActivity;
 import com.onesoft.digitaledu.view.fragment.cloud.CloudFragment;
 import com.onesoft.digitaledu.view.fragment.home.HomeFragment;
 import com.onesoft.digitaledu.view.fragment.message.MessageFragment;
 import com.onesoft.digitaledu.view.fragment.person.PersonFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 public class MainActivity extends BaseFragmentActivity implements View.OnClickListener {
@@ -68,7 +74,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         findViewById(R.id.ll_delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mMessageFragment.delete();
             }
         });
         findViewById(R.id.ll_all).setOnClickListener(new View.OnClickListener() {
@@ -84,6 +90,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
             }
         });
 
+        EventBus.getDefault().register(this);
         normalState();
     }
 
@@ -193,7 +200,6 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
             case R.id.ll_shop:
                 mIVShop.setImageDrawable(getResources().getDrawable(R.drawable.ic_shop_sel));
                 mTVShop.setTextColor(getResources().getColor(R.color.color_tab_selected));
-                changeFragment(mCloudFragment, CloudFragment.class.getSimpleName());
                 break;
             case R.id.ll_person:
                 mIVPerson.setImageDrawable(getResources().getDrawable(R.drawable.ic_person_sel));
@@ -204,8 +210,29 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-        outState.putInt(SELECT_POS, selected_pos);
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 使用事件总线监听回调
+     *
+     * @param event
+     */
+    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onBaseEvent(final BaseEvent event) {
+        switch (event.type) {
+            case BaseEvent.TURN_TO_MESSAGE: {//消息
+                onClick(findViewById(R.id.ll_group));
+                break;
+            }
+            case BaseEvent.TURN_TO_MINE: {//我的
+                onClick(findViewById(R.id.ll_person));
+                startActivity(new Intent(this, PersonInfoActivity.class));
+                break;
+            }
+        }
     }
 }

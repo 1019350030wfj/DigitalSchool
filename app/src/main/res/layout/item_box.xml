@@ -15,15 +15,15 @@
         android:id="@+id/avatar_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true">
 
-        <ImageView
+        <com.onesoft.digitaledu.widget.CircleImageView
             android:id="@+id/avatar"
             android:layout_width="@dimen/dimen45"
             android:layout_height="@dimen/dimen45"
             android:layout_centerVertical="true"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/icon_default_avatar"/>
         <View
             android:id="@+id/img_del"
@@ -40,6 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dimen5"
         android:layout_toRightOf="@id/avatar_container"
+        android:drawableLeft="@drawable/icon_dot_yellow"
+        android:drawablePadding="3dp"
         android:textColor="@color/color_333"
         android:textSize="14sp"/>
 
@@ -76,4 +78,11 @@
         android:textColor="@color/color_BBBBBB"
         android:textSize="12sp"/>
 
+    <View
+        android:id="@+id/img_attach"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/icon_annex_list"/>
 </RelativeLayout>

@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.onesoft.digitaledu.R;
-import com.onesoft.digitaledu.model.TwoLevelTitle;
+import com.onesoft.digitaledu.model.TopDirectory;
 import com.onesoft.digitaledu.view.BaseAbsListAdapter;
 
 /**
  * Created by Jayden on 2016/10/28.
  */
 
-public class TwoLevelTitleAdapter extends BaseAbsListAdapter<TwoLevelTitle> {
+public class TwoLevelTitleAdapter extends BaseAbsListAdapter<TopDirectory> {
 
     private String mSelectId;
 
@@ -40,7 +40,7 @@ public class TwoLevelTitleAdapter extends BaseAbsListAdapter<TwoLevelTitle> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        TwoLevelTitle topDirectory = getItem(position);
+        TopDirectory topDirectory = getItem(position);
         if(topDirectory.name.length() > 4){
             viewHolder.categoryName.setText(topDirectory.name.substring(0,4));
         } else {
@@ -49,7 +49,7 @@ public class TwoLevelTitleAdapter extends BaseAbsListAdapter<TwoLevelTitle> {
 
         if (topDirectory.id.equals(mSelectId)){
             viewHolder.indicator.setBackgroundColor(mContext.getResources().getColor(R.color.color_018beb));
-            viewHolder.categoryName.setBackgroundColor(mContext.getResources().getColor(R.color.color_f2f2f2));
+            viewHolder.categoryName.setBackgroundColor(mContext.getResources().getColor(R.color.color_66ffffff));
             viewHolder.categoryName.setTextColor(mContext.getResources().getColor(R.color.color_0097ff));
         } else {
             viewHolder.indicator.setBackgroundColor(mContext.getResources().getColor(android.R.color.white));

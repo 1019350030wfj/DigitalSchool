@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/layout_chat"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@android:color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:id="@+id/rl_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <!-- 聊天输入框 -->
+            <include
+                layout="@layout/custom_facerelativelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <com.onesoft.digitaledu.widget.ptr.PtrListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/rl_bottom"
+            android:cacheColorHint="#0000"
+            android:divider="#ebebeb"
+            android:dividerHeight="0.5dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbarStyle="outsideOverlay"
+            android:scrollbars="none"
+        />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/btn_up"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="75dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/btn_up_nor"
+        android:visibility="invisible"/>
+</FrameLayout>

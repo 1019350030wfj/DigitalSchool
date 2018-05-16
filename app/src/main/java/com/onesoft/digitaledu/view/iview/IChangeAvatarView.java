@@ -5,4 +5,5 @@ package com.onesoft.digitaledu.view.iview;
  */
 
 public interface IChangeAvatarView extends IBaseView {
+    void onSuccess();
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="GalleryTheme" parent="GalleryBaseTheme">
+        <item name="android:colorPrimary">@color/colorPrimary</item>    <!-- 状态栏 -->
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item> <!-- toolbar -->
+        <item name="android:colorAccent">@color/colorPrimaryDark</item>  <!-- 重点 -->
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="galleryBtnBackground" parent="GalleryBaseTheme">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+
+</resources>

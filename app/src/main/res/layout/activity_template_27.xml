@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f2f2f2"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/dimen20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_old_pwd"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/login_name"
+            android:textColor="@color/color_1A1A1A"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/et_old_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:textColor="@color/color_808080"
+            android:textColorHint="@color/color_808080"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_ebebeb"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen15">
+
+        <TextView
+            android:id="@+id/tv_new_pwd"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/password"
+            android:textColor="@color/color_1A1A1A"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/et_new_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="bottom"
+            android:hint="@string/new_pwd_hint"
+            android:inputType="textPassword"
+            android:textColor="@color/color_808080"
+            android:textColorHint="@color/color_808080"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_ebebeb"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen15">
+
+        <TextView
+            android:id="@+id/tv_confirm_pwd"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm_pwd"
+            android:textColor="@color/color_1A1A1A"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/et_confirm_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="bottom"
+            android:hint="@string/confirm_pwd_hint"
+            android:inputType="textPassword"
+            android:textColor="@color/color_808080"
+            android:textColorHint="@color/color_808080"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</LinearLayout>

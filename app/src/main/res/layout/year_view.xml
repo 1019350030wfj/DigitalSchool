@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_year_view_calendar_background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen15">
+
+        <LinearLayout
+            style="@style/month_view_container">
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_jan"
+                style="@style/month_view"
+            />
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_feb"
+                style="@style/month_view"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/month_view_container">
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_march"
+                style="@style/month_view"/>
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_april"
+                style="@style/month_view"
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/month_view_container">
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_may"
+                style="@style/month_view"
+            />
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_jun"
+                style="@style/month_view"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/month_view_container">
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_july"
+                style="@style/month_view"/>
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_aug"
+                style="@style/month_view"
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/month_view_container">
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_sept"
+                style="@style/month_view"
+            />
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_oct"
+                style="@style/month_view"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/month_view_container">
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_nov"
+                style="@style/month_view"/>
+
+            <com.onesoft.digitaledu.widget.calendar.custom.MonthView
+                android:id="@+id/mv_year_view_dec"
+                style="@style/month_view"
+            />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.onesoft.digitaledu.R;
+import com.onesoft.digitaledu.view.activity.message.SendMessageActivity;
 import com.onesoft.digitaledu.widget.treerecyclerview.interfaces.ItemDataClickListener;
 import com.onesoft.digitaledu.widget.treerecyclerview.model.TreeItem;
 
@@ -42,7 +43,7 @@ public class TreeItem3Holder extends BaseViewHolder {
             expand.setRotation(90);
             List<TreeItem> children = itemData.mChildren;
             if (children != null) {
-                count.setText(String.format("%s", itemData.total));
+                count.setText(String.format("%s", itemData.mChildren.size()));
             }
             count.setVisibility(View.VISIBLE);
         } else {
@@ -65,7 +66,7 @@ public class TreeItem3Holder extends BaseViewHolder {
                         rotationExpandIcon(0, 90);
                         List<TreeItem> children = itemData.mChildren;
                         if (children != null) {
-                            count.setText(String.format("%s", itemData.total));
+                            count.setText(String.format("%s", itemData.mChildren.size()));
                         }
                         count.setVisibility(View.VISIBLE);
                     }
@@ -79,6 +80,9 @@ public class TreeItem3Holder extends BaseViewHolder {
             public void onClick(View v) {
                 itemData.isSelect = !itemData.isSelect;
                 select.setSelected(itemData.isSelect);
+                //跳转到发送消息
+                SendMessageActivity.startSendMessageActivity(select.getContext(),
+                        SendMessageActivity.FROM_SYSTEM_CONTACT_MASS,itemData.name,itemData.id);
                 if (imageClickListener != null){
                     imageClickListener.onSelectChange(itemData);
                 }

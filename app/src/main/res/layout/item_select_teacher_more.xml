@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_box_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_fafafa_fff"
+    android:gravity="center_vertical"
+    android:paddingBottom="@dimen/dimen10"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen10">
+
+    <com.onesoft.digitaledu.widget.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/dimen45"
+        android:layout_height="@dimen/dimen45"
+        android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_default_avatar"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen5"
+        android:layout_toRightOf="@id/avatar"
+        android:textColor="@color/color_333"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@id/avatar"
+        android:paddingLeft="5dp"
+        android:paddingTop="2dp"
+        android:textColor="@color/color_333"
+        android:textSize="14sp"
+    />
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_toRightOf="@id/avatar"
+        android:ellipsize="end"
+        android:paddingLeft="5dp"
+        android:paddingTop="2dp"
+        android:singleLine="true"
+        android:textColor="@color/color_BBBBBB"
+        android:textSize="12sp"/>
+
+
+    <ImageView
+        android:id="@+id/img_select"
+        android:layout_width="@dimen/dimen25"
+        android:layout_height="@dimen/dimen25"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dimen15"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_delete_box"/>
+
+</RelativeLayout>

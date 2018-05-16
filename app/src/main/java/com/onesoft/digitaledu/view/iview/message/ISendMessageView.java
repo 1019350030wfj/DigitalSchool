@@ -8,4 +8,5 @@ import com.onesoft.digitaledu.view.iview.IBaseView;
  */
 
 public interface ISendMessageView extends IBaseView{
+    void onSuccess();
 }

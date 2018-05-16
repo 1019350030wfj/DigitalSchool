@@ -138,9 +138,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:paddingBottom="40dp"
             android:background="@color/color_f2f2f2"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="40dp">
             <RelativeLayout
                 android:id="@+id/rl_offline_down"
                 android:layout_width="match_parent"
@@ -169,6 +169,7 @@
                         android:layout_height="11dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="2dp"
+                        android:visibility="invisible"
                         android:background="@drawable/icon_dot_point"
                     />
                 </RelativeLayout>
@@ -299,7 +300,8 @@
                     android:gravity="center"
                     android:text="@string/str_default"
                     android:textColor="@color/color_999999"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:visibility="invisible"/>
             </RelativeLayout>
 
             <View style="@style/DividerHorizontal1"/>

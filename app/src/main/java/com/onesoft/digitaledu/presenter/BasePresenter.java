@@ -18,4 +18,5 @@ public abstract class BasePresenter<T extends IBaseView> {
         this.mContext = context;
         this.iView = iView;
     }
+
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <com.onesoft.digitaledu.widget.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/dimen45"
+        android:layout_height="@dimen/dimen45"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="43dp"
+    />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen10"
+        android:layout_toRightOf="@id/avatar"
+        android:paddingTop="4dp"
+        android:text="丁晋华"
+        android:textColor="@color/color_808080"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@id/avatar"
+        android:paddingLeft="10dp"
+        android:paddingTop="3dp"
+        android:text="教师工号：600321"
+        android:textColor="@color/color_999999"
+        android:textSize="12sp"
+    />
+
+    <ImageView
+        android:id="@+id/img_select"
+        android:layout_width="@dimen/dimen25"
+        android:layout_height="@dimen/dimen25"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dimen15"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_next_nor"/>
+
+</RelativeLayout>

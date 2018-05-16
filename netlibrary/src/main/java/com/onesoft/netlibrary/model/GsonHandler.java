@@ -1,11 +1,7 @@
-package com.onesoft.jaydenim.http;
-
+package com.onesoft.netlibrary.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.json.JSONObject;
-
-import java.io.Reader;
 import java.lang.reflect.Type;
 
 import static com.google.gson.FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES;
@@ -95,54 +91,8 @@ public class GsonHandler {
      * @param type
      * @return instance of type
      */
-    public static final <V> V fromJson(String json, Class<V> type) {
-        return GSON.fromJson(json, type);
-    }
-
-    /**
-     * Convert string to given type
-     *
-     * @param json
-     * @param type
-     * @return instance of type
-     */
     public static final <V> V fromJson(String json, Type type) {
         return GSON.fromJson(json, type);
     }
 
-    /**
-     * Convert content of reader to given type
-     *
-     * @param reader
-     * @param type
-     * @return instance of type
-     */
-    public static final <V> V fromJson(Reader reader, Class<V> type) {
-        return GSON.fromJson(reader, type);
-    }
-
-    /**
-     * Convert content of reader to given type
-     *
-     * @param reader
-     * @param type
-     * @return instance of type
-     */
-    public static final <V> V fromJson(Reader reader, Type type) {
-        return GSON.fromJson(reader, type);
-    }
-
-    public static final <V> V fromJson(JSONObject obj, Type type){
-        if(obj == null){
-            return null;
-        }
-        return GSON.fromJson(obj.toString(), type);
-    }
-
-    public static final <V> V fromJson(JSONObject obj, Class<V> type) {
-        if(obj == null){
-            return null;
-        }
-        return GSON.fromJson(obj.toString(), type);
-    }
 }

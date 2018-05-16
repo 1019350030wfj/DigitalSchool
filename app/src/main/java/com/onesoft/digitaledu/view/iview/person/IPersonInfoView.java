@@ -1,5 +1,6 @@
 package com.onesoft.digitaledu.view.iview.person;
 
+import com.onesoft.digitaledu.model.PersonInfo;
 import com.onesoft.digitaledu.view.iview.IBaseView;
 
 /**
@@ -7,4 +8,6 @@ import com.onesoft.digitaledu.view.iview.IBaseView;
  */
 
 public interface IPersonInfoView extends IBaseView {
+
+    void onSuccess(PersonInfo personInfo);
 }

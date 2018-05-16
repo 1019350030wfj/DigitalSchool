@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.onesoft.digitaledu.widget.face.FaceRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FaceRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <View
+        style="@style/DividerHorizontal"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_r16_00cdff"
+            android:text="@string/send"
+            android:textColor="@color/c2"
+            android:textSize="@dimen/size16"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen15"
+            android:layout_toLeftOf="@+id/btn_send"
+            android:layout_toStartOf="@+id/btn_send">
+            <Button
+                android:id="@+id/btn_face"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="@dimen/dimen15"
+                android:background="@drawable/btn_sns_smile"/>
+
+            <EditText
+                android:id="@+id/et_sendmessage"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/btn_face"
+                android:background="@null"
+                android:hint="@string/feedback_hint"
+                android:maxLines="1"
+                android:textColor="@color/color_bababa"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        style="@style/DividerHorizontal"/>
+
+    <LinearLayout
+        android:id="@+id/ll_facechoose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f6f5f5"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_contains"
+            android:layout_width="match_parent"
+            android:layout_height="165dp">
+        </android.support.v4.view.ViewPager>
+
+        <LinearLayout
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+        </LinearLayout>
+    </LinearLayout>
+
+</com.onesoft.digitaledu.widget.face.FaceRelativeLayout>

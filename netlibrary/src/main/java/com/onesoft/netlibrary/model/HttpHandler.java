@@ -23,6 +23,9 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -79,34 +82,17 @@ public class HttpHandler {
     }
 
     /**
-     * 获取加密的参数sign,按键名升序排序
+     * 异步get获取数据
      */
-//    private static String getSign(List<Param> list) {
-//        StringBuilder sb = new StringBuilder();
-//        if (list != null && list.size() > 0) {
-//            Collections.sort(list, mPairComparator);
-//            for (Param item : list) {
-//                if (TextUtils.isEmpty(item.value)) {
-//                    continue;
-//                }
-//                if (sb.length() != 0) {
-//                    sb.append("&");
-//                }
-//                sb.append(item.key);
-//                sb.append("=");
-//                sb.append(item.value);
-//            }
-//        }
-//        sb.append(ApiRequest.KEY);
-//        LogUtils.e("getSign:" + sb.toString());
-//        LogUtils.e("Md5:" +SecurityUtils.encodeMD5(sb.toString()));
-//        return SecurityUtils.encodeMD5(sb.toString());
-//    }
+    public void getAsync(Context context, String url, ResultCallback callback) {
+        Request request = new Request.Builder().url(url).tag(context).build();
+        deliveryResult(context, callback, request);
+    }
 
     /**
      * 异步get获取数据
      */
-    public void getAsync(Context context, String url, ResultCallback callback) {
+    public void getAsync(Context context, String url, ResponseCallback callback) {
         Request request = new Request.Builder().url(url).tag(context).build();
         deliveryResult(context, callback, request);
     }
@@ -156,7 +142,7 @@ public class HttpHandler {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                sendFailedStringCallback(request, e, callback);
+                sendFailedCallback(request, e, callback);
             }
 
             @Override
@@ -176,7 +162,7 @@ public class HttpHandler {
                     //如果下载文件成功，第一个参数为文件的绝对路径
                     sendSuccessResultCallback(context, file.getAbsolutePath(), callback);
                 } catch (IOException e) {
-                    sendFailedStringCallback(response.request(), e, callback);
+                    sendFailedCallback(response.request(), e, callback);
                 } finally {
                     try {
                         if (is != null) is.close();
@@ -207,27 +193,63 @@ public class HttpHandler {
         return contentTypeFor;
     }
 
-    private void deliveryResult(final Context context, final ResultCallback callback, final Request request) {
+    /**
+     * 返回字符串
+     *
+     * @param context
+     * @param callback
+     * @param request
+     */
+    private void deliveryResult(final Context context, final ResponseCallback callback, final Request request) {
         mOkHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {
                 LogUtil.e("http request onFailure, msg:" + e.getMessage());
-                sendFailedStringCallback(request, e, callback);
+                if (callback != null)
+                    callback.onError(request, e);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 LogUtil.e("http request onResponse" + response.toString());
                 if (response.code() == 500 || response.code() == 502) {
-//                    sendFailedStringCallback(response.request(), new Exception(), callback);
                     callback.onError("500", "获取数据失败");
-//                    ((Activity)context).runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            ToastUtils.showToast(context,"获取数据失败");
-//                        }
-//                    });
+                    return;
+                }
+                try {
+                    final String string = response.body().string();
+                    LogUtil.e("onResponse：data is " + string);
+                    sendSuccessResponseCallback(response.code(), string, callback);
+                } catch (IOException e) {
+                    if (callback != null)
+                        callback.onError(request, e);
+                }
+            }
+        });
+    }
+
+    /**
+     * json格式
+     *
+     * @param context
+     * @param callback
+     * @param request
+     */
+    private void deliveryResult(final Context context, final ResultCallback callback, final Request request) {
+        mOkHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                LogUtil.e("http request onFailure, msg:" + e.getMessage());
+                sendFailedCallback(request, e, callback);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                LogUtil.e("http request onResponse" + response.toString());
+                if (response.code() == 500 || response.code() == 502) {
+                    callback.onError("500", "获取数据失败");
                     return;
                 }
                 try {
@@ -236,22 +258,21 @@ public class HttpHandler {
                     if (callback.mType == String.class) {
                         sendSuccessResultCallback(context, string, callback);
                     } else {
-                        Object o = com.onesoft.jaydenim.http.GsonHandler.fromJson(string, callback.mType);
+                        Object o = GsonHandler.fromJson(string, callback.mType);
                         sendSuccessResultCallback(context, o, callback);
                     }
                 } catch (IOException e) {
-                    sendFailedStringCallback(response.request(), e, callback);
+                    sendFailedCallback(response.request(), e, callback);
                 } catch (com.google.gson.JsonParseException e)//Json解析的错误
                 {
-                    sendFailedStringCallback(response.request(), e, callback);
+                    sendFailedCallback(response.request(), e, callback);
                 }
             }
 
         });
     }
 
-
-    private void sendFailedStringCallback(final Request request, final Exception e, final ResultCallback callback) {
+    private void sendFailedCallback(final Request request, final Exception e, final ResultCallback callback) {
         mDelivery.post(new Runnable() {
             @Override
             public void run() {
@@ -270,6 +291,55 @@ public class HttpHandler {
                 }
             }
         });
+    }
+
+    private void sendSuccessResponseCallback(final int code, final String object, final ResponseCallback callback) {
+        if (callback != null) {
+            callback.onResponse(code, object);
+        }
+    }
+
+    /**
+     * post异步文件上传
+     */
+    public void postAsync(Context context, String url, List<Param> params, List<FileParam> fileParams, final ResultCallback callback) {
+        if (!NetUtils.isNetConnected(context)) {
+            callback.onError("", context.getResources().getString(R.string.loading_no_network));
+            return;
+        }
+        Request request = buildMultipartFormRequest(context, url, params, fileParams);
+        deliveryResult(context, callback, request);
+    }
+
+    private Request buildMultipartFormRequest(Context context, String url, List<Param> params, List<FileParam> fileParams) {
+        MultipartBody.Builder bodyBuilder = new MultipartBody.Builder();
+        bodyBuilder.setType(MultipartBody.FORM);
+        Headers header = new Headers.Builder().build();
+        if (params != null && params.size() > 0) {
+            for (Param param : params) {
+                if (param.value != null) {
+                    LogUtil.e("param:" + param.toString());
+                    bodyBuilder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + param.key + "\""),
+                            RequestBody.create(null, param.value));
+                }
+            }
+        }
+        if (fileParams != null && fileParams.size() > 0) {
+            for (FileParam param : fileParams) {
+                LogUtil.e("file:" + param.toString());
+                bodyBuilder.addPart(Headers.of("Content-Disposition",
+                        "form-data; name=\"" + param.key + "\"; filename=\"" + param.file.getName() + "\""),
+//                        RequestBody.create(MediaType.parse("image/*"), param.file));
+                        RequestBody.create(MediaType.parse(guessMimeType(param.file.getAbsolutePath())), param.file));
+            }
+        }
+        RequestBody body = bodyBuilder.build();
+        return new Request.Builder()
+                .url(url)
+                .post(body)
+                .tag(context)
+                .headers(header)
+                .build();
     }
 
     public static abstract class ResultCallback<T> {
@@ -291,6 +361,20 @@ public class HttpHandler {
         public abstract void onError(Request request, Exception e);
 
         public abstract void onResponse(T response);
+
+        public void onError(String errorCode, String errorMsg) {
+        }
+    }
+
+
+    public static abstract class ResponseCallback {//回调是异步的，如果有UI操作，记得切换到主线程
+
+        public ResponseCallback() {
+        }
+
+        public abstract void onError(Request request, Exception e);
+
+        public abstract void onResponse(int code, String response);
 
         public void onError(String errorCode, String errorMsg) {
         }

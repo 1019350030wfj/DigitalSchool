@@ -20,8 +20,8 @@ public class CustomDialog extends Dialog {
 
     public CustomDialog(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
     }
+
     public CustomDialog(Context context, int theme) {
         super(context, theme);
     }
@@ -153,6 +153,8 @@ public class CustomDialog extends Dialog {
                 // if tv1 confirm button just set the visibility to GONE
                 layout.findViewById(R.id.positiveButton).setVisibility(
                         View.GONE);
+                layout.findViewById(R.id.view_divide).setVisibility(
+                        View.GONE);
             }
             // set the cancel button
             if (negativeButtonText != null) {
@@ -170,6 +172,8 @@ public class CustomDialog extends Dialog {
             } else {
                 // if tv1 confirm button just set the visibility to GONE
                 layout.findViewById(R.id.negativeButton).setVisibility(
+                        View.GONE);
+                layout.findViewById(R.id.view_divide).setVisibility(
                         View.GONE);
             }
             // set the content message

@@ -1,6 +1,7 @@
 package com.onesoft.digitaledu.view.activity.person;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -8,18 +9,23 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.onesoft.digitaledu.R;
 import com.onesoft.digitaledu.presenter.person.OfflineDownPresenter;
+import com.onesoft.digitaledu.utils.RemindUtils;
+import com.onesoft.digitaledu.utils.ViewUtil;
 import com.onesoft.digitaledu.view.activity.ToolBarActivity;
 import com.onesoft.digitaledu.view.activity.person.download.DownloadingFileFragment;
 import com.onesoft.digitaledu.view.fragment.message.ViewPagerAdapter;
 import com.onesoft.digitaledu.view.iview.person.IOfflineDownView;
 
+import org.wlf.filedownloader.DownloadFileInfo;
+import org.wlf.filedownloader.FileDownloader;
+import org.wlf.filedownloader.base.Status;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 离线下载
@@ -72,7 +78,7 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
         mLLMessageBottom = findViewById(R.id.ll_message_bottom);
 
         mTvAll = (TextView) findViewById(R.id.tv_all);
-        translateToHide(mLLMessageBottom);
+        ViewUtil.translateToHide(this, mLLMessageBottom);
     }
 
     @Override
@@ -80,7 +86,17 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
         findViewById(R.id.ll_delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                RemindUtils.showDialogWithNag(OfflineDownloadActivity.this,
+                        getResources().getString(R.string.is_delete), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (mCurSelectPage == 0) {//判断当前选中的是哪一页
+                                    ((DownloadingFileFragment) mFragmentList.get(0)).delete();
+                                } else {
+                                    ((DownloadFileFragment) mFragmentList.get(1)).delete();
+                                }
+                            }
+                        });
             }
         });
 
@@ -93,6 +109,11 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
                     mTvAll.setText(getResources().getString(R.string.all_select));
                 }
                 isSelectAll = !isSelectAll;
+                if (mCurSelectPage == 0) {//判断当前选中的是哪一页
+                    ((DownloadingFileFragment) mFragmentList.get(0)).setSelectAll(isSelectAll);
+                } else {
+                    ((DownloadFileFragment) mFragmentList.get(1)).setSelectAll(isSelectAll);
+                }
             }
         });
     }
@@ -102,7 +123,7 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
     @Override
     public void initData() {
         setTitle(getString(R.string.offline_download));
-        mTxtSendingBox.setText(getString(R.string.download_already,"20"));
+        showDownloadedSize();
         mFragmentList = new ArrayList<>();
         mFragmentList.add(DownloadingFileFragment.newInstance("InBox"));
         mFragmentList.add(DownloadFileFragment.newInstance("SendingBox"));
@@ -125,6 +146,7 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
                     mIndicatorView1.setSelected(false);
                     mIndicatorView2.setSelected(true);
                 }
+                updateDeleteNum();
             }
 
             @Override
@@ -149,6 +171,16 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
         mPageStateLayout.onSucceed();
     }
 
+    public void showDownloadedSize() {
+        int count = 0;
+        for (DownloadFileInfo downloadFileInfo : FileDownloader.getDownloadFiles()) {
+            if (downloadFileInfo.getStatus() == Status.DOWNLOAD_STATUS_COMPLETED) {
+                count++;
+            }
+        }
+        mTxtSendingBox.setText(getString(R.string.download_already, "" + count));
+    }
+
     private void selectPagerOne() {
         mTxtInBox.setSelected(true);
         mTxtSendingBox.setSelected(false);
@@ -156,17 +188,9 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
         mIndicatorView2.setSelected(false);
     }
 
-    private void translateToShow(View view) {
-        AnimationSet animationSet = (AnimationSet) AnimationUtils.loadAnimation(this, R.anim.show_set);
-        view.startAnimation(animationSet);
-        view.setVisibility(View.VISIBLE);
-    }
-
-    private void translateToHide(View view) {
-        AnimationSet animationSet = (AnimationSet) AnimationUtils.loadAnimation(this, R.anim.hide_set);
-        view.startAnimation(animationSet);
-        view.setVisibility(View.GONE);
-
+    public void updateShow() {
+        ((DownloadFileFragment) mFragmentList.get(1)).updateShow();
+        showDownloadedSize();//更新已下载的数量
     }
 
     @Override
@@ -186,12 +210,8 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
             @Override
             public void onClick(View v) {
                 showDeleteMode();
-                updateDeleteNum("3");
-                if (mCurSelectPage == 0){
-                    ((DownloadingFileFragment)mFragmentList.get(0)).setBoxAdapterDeleteMode(true);
-                } else {
-                    ((DownloadFileFragment)mFragmentList.get(1)).setBoxAdapterDeleteMode(true);
-                }
+                ((DownloadingFileFragment) mFragmentList.get(0)).setBoxAdapterDeleteMode(true);
+                ((DownloadFileFragment) mFragmentList.get(1)).setBoxAdapterDeleteMode(true);
             }
         });
         if (item != null) {
@@ -211,31 +231,44 @@ public class OfflineDownloadActivity extends ToolBarActivity<OfflineDownPresente
                 }
             });
             setTitle("");
+            updateDeleteNum();
             mMenuView.setVisibility(View.INVISIBLE);
 
-            translateToShow(mLLMessageBottom);
+            ViewUtil.translateToShow(this, mLLMessageBottom);
             mIsDeleteMode = true;
         }
     }
 
     public void showNormalMode() {//正常模式
         if (mIsDeleteMode) {
-            translateToHide(mLLMessageBottom);
+            ViewUtil.translateToHide(this, mLLMessageBottom);
             mIsDeleteMode = false;
 
             initToolbar();
             mMenuView.setVisibility(View.VISIBLE);
             setTitle(getString(R.string.offline_download));
 
-            if (mCurSelectPage == 0){
-                ((DownloadingFileFragment)mFragmentList.get(0)).setBoxAdapterDeleteMode(false);
+            if (mCurSelectPage == 0) {
+                ((DownloadingFileFragment) mFragmentList.get(0)).setBoxAdapterDeleteMode(false);
             } else {
-                ((DownloadFileFragment)mFragmentList.get(1)).setBoxAdapterDeleteMode(false);
+                ((DownloadFileFragment) mFragmentList.get(1)).setBoxAdapterDeleteMode(false);
             }
         }
     }
 
-    public void updateDeleteNum(String content) {
-        getSupportActionBar().setTitle(getResources().getString(R.string.already_select_delete, content));
+    public void updateDeleteNum() {
+        List<DownloadFileInfo> list;
+        int count = 0;
+        if (mCurSelectPage == 0) {
+            list = ((DownloadingFileFragment) mFragmentList.get(0)).getDatas();
+        } else {
+            list = ((DownloadFileFragment) mFragmentList.get(1)).getDatas();
+        }
+        for (DownloadFileInfo boxBean : list) {
+            if (boxBean.isDelete) {//需要删除的
+                count++;
+            }
+        }
+        getSupportActionBar().setTitle(getResources().getString(R.string.already_select_delete1, "" + count));
     }
 }
